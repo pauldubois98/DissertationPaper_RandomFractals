@@ -1,0 +1,141 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+\documentclass[a4paper, 11pt]{article}
+%\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+
+%margin
+\usepackage[margin=2cm]{geometry}
+%\usepackage[margin=1in]{geometry}
+\usepackage{changepage}
+%line spacing
+\renewcommand{\baselinestretch}{1.15}
+%\renewcommand{\baselinestretch}{1.6}
+%lists
+\usepackage{enumitem}
+%multi-columns
+\usepackage{multicol}
+%encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%English
+\usepackage[english]{babel}
+%colors
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+%tables
+\usepackage{multirow}
+\usepackage{longtable}
+%for math
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{makecell}
+%for images
+\usepackage{graphicx}
+\graphicspath{ {./img/} }
+%for plots
+\usepackage{tikz}
+\usetikzlibrary{mindmap}
+\usepackage{adjustbox}
+%links
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+%\hypersetup{colorlinks=true}
+%citations
+\usepackage[square]{natbib}
+\bibliographystyle{unsrtnat}
+%code
+\usepackage{minted}
+%\usepackage[cache=false]{minted}
+%\usepackage{listings}
+\usepackage{algpseudocode}
+\definecolor{CodeColor}{RGB}{100, 100, 100}
+%%files tree architecture
+%\usepackage{dirtree}
+
+
+
+%environments
+\newtheorem*{notation}{Notation}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{property}{Property}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{conjecture}{Conjecture}
+%commands
+%\newcommand{\name}[num]{definition}
+\newcommand{\primes}{\mathbb{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\R}{\mathbb{R}}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\halfplane}{\mathbb{H}}
+%\newcommand{\dim}[1]{\text{dim}(#1)}
+\newcommand{\SL}[2]{\text{SL}_{#1}(#2)}
+\newcommand{\Norm}[2][]{\text{Norm}_{#1}(#2)}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\abs}[1]{| #1 |}
+\newcommand{\curt}[1]{\sqrt[3]{#1}}
+\newcommand{\Ker}[1]{\text{Ker}(#1)}
+\newcommand{\Image}[1]{\text{Im}(#1)}
+\newcommand{\Gal}[1]{\text{Gal}(#1)}
+\newcommand{\Frob}[2]{\text{Frob}_{#1}(#2)}
+\newcommand{\Tr}[1]{\text{Tr}(#1)}
+\newcommand{\Det}[1]{\text{Det}(#1)}
+\newcommand{\End}[1]{\text{End}(#1)}
+\newcommand{\Aut}[1]{\text{Aut}(#1)}
+\newcommand{\legendre}[2]{\left( \frac{#1}{#2} \right)}
+\newcommand{\degree}[1]{\partial #1}
+
+
+
+
+\begin{document}
+	\include{title_page}
+	\begin{center}
+		\LARGE Random Fractals
+	\end{center}
+	\vspace{0.5cm}
+	\begin{abstract}
+		[blah]
+	\end{abstract}
+	
+
+	\vspace{2.5cm}
+	\begin{center}
+		\textbf{Acknowledgment}
+	\end{center}
+	\vspace{1cm}
+	
+	First of all, I would like to thank my supervisor, Ben Hambly, for guiding and supporting through this project.
+		
+	I would like to thank the whole administration team of Oxford, for all the help they provided despite the pandemic context.	
+	
+	
+	\newpage
+	
+	\tableofcontents
+	
+	\include{Introduction}
+	\include{BackgroundTheory}
+	\include{FractalPercolation}
+	\include{Numerics}
+	
+	
+	\appendix
+	\include{title_appendix}
+	\include{Plots}
+	\include{Codes}
+	
+	\bibliography{references}
+\end{document}
