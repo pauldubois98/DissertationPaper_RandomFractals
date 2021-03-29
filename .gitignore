@@ -1,3 +1,6 @@
+## TeXstudio files
+*.txss
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
