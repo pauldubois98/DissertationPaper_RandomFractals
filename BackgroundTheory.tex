@@ -6,7 +6,7 @@
 \subsection{Dimensions}
 The concept of dimension is quite intuitive from a day-life perceptive.
 However, the mathematical concept is more involved.
-From the non-mathematical world, this can be used to have better understanding of biology, as DNA segments are crooked enough be considered as object with dimension greater than one.
+From the non-mathematical world, this can be used to have better understanding of biology: DNA segments are crooked enough be considered as object with dimension greater than one.
 
 \subsubsection{Intuition}
 Some object that we are used to work with have a very commonly admitted dimension:
@@ -15,55 +15,164 @@ Some object that we are used to work with have a very commonly admitted dimensio
 	\item \textbf{Curve} (e.g.: \textit{line}): dimension 1
 	\item \textbf{Surface} (e.g.: \textit{square}): dimension 2
 	\item \textbf{Volume} (e.g.: \textit{cube}): dimension 3
-	\item \textbf{$N$-dim space} (or \textit{$N$-dimensional cuboid}): dimension $N$
+	\item \textbf{General $d$-dim set} (e.g.: \textit{$d$-dimensional cuboid}): dimension $d$
 \end{itemize}
 All of these usual objects have integral dimensions, making it (relatively) easy to understand.
 
 The rule of thumb to calculate the dimension is to double (or, in general, multiply by $n$) the size of the object, and count the number of copies of the original object obtained.
-If there is $N$ original objects, the dimension is $\frac{ln(N)}{ln(n)}$.
+If there is $N$ original objects, the dimension is $d = \frac{ln(N)}{ln(n)}$.
+This is so that when scaling by $n$, the length/area/volume of the set is multiplied by $N = n^d$.
 
 Some objects have a more complicated dimension (in fact, a non-integral one):
 \begin{itemize}
-	\item \textbf{Cantor Set}: dimension $log_3(2) = \frac{ln(2)}{ln(3)}$
-	\item \textbf{Koch Snowflake}: dimension $log_3(4) = \frac{ln(4)}{ln(3)}$
-	\item \textbf{Sierpiński Triangle}: dimension $log_2(3) = \frac{ln(3)}{ln(2)}$
+	\item \textbf{Cantor Set}: dimension $log_3(2) = \frac{ln(2)}{ln(3)} \simeq 0.631$
+	\item \textbf{Koch Snowflake}: dimension $log_3(4) = \frac{ln(4)}{ln(3)} \simeq 1.262$
+	\item \textbf{Sierpiński Triangle}: dimension $log_2(3) = \frac{ln(3)}{ln(2)} \simeq 1.545$
 \end{itemize}
 The dimension is much less intuitive for these objects, and it justifies creating a formal mathematical definition.
 
 After this quick overview, 3 properties seem desirable for a definition of dimension \cite{Pollicott_LFDT}.
 For a set $X$ ($\subset \R^n$, in general):
-\begin{enumerate}
-	\item If $X$ is a manifold, dimension coincide with the natural preconception.
-	\item In some cases, $X$ may have a fractional (i.e. non-integral) dimension.
-	\item If $X$ is countable, then $X$ has dimension $0$.
+\begin{enumerate}\label{propr:desirable}
+	\item If $X$ is a manifold, dimension coincide with the natural preconception. \label{propr:desirable1}
+	\item In some cases, $X$ may have a fractional (i.e. non-integral) dimension. \label{propr:desirable2}
+	\item If $X$ is countable, then $X$ has dimension $0$. \label{propr:desirable3}
 \end{enumerate}
 There are several definition for dimension, satisfying different properties.
 
 \subsubsection{Topological Dimension}
-\paragraph{Definition}
+The topological dimension is the most straightforward way to define dimension.
+It relies on the intuition that the boundary of a ball of dimension $d$ should have dimension $d-1$.
 
-\paragraph{Properties}
+\begin{definition}[Topological dimension]\label{def:topological_dimension}
+	The topological dimension $\dim_T(X)$ of a set $X$ is defined recursively through the following:
+	\begin{equation*}
+		\dim_T(X) =
+		\begin{cases}
+			0 & \text{if } \ \forall x \in X, \ \exists \, r>0 \text{ s.t. } \partial B_r(x) \cap X = \emptyset\\
+			d & \text{if } \ \forall x \in X, \ \exists \, r>0 \text{ s.t. } \dim_T(\partial B_r(x) \cap X) = d-1
+		\end{cases}
+	\end{equation*}
+\end{definition}
+
+This definition satisfies the first desired property (\ref{propr:desirable}:\ref{propr:desirable1}).
+However, $\dim_T$ is always an integer (this is clear from definition).
+Therefore, it does not satisfies the second desired property (\ref{propr:desirable}:\ref{propr:desirable2}).
 
 \subsubsection{Box Dimension}
-\paragraph{Definition}
+The box dimension is more abstract than the topological one (def. \ref{def:topological_dimension}).
+It relies on an intuition mentioned before: if scaled by $n$, a set contains $N$ copies of the original set, then the dimension should be  $\frac{ln(N)}{ln(n)}$.
 
-\paragraph{Properties}
+\begin{definition}[Box dimension]\label{def:box_dimension}
+	The box dimension $\dim_B$ of a set $X$ is defined through the following limit:
+	$$
+	\dim_B(X) = \lim_{\varepsilon \to 0} \frac{ln(N(\varepsilon))}{-log(\varepsilon)}
+	$$
+	Here, $N(\varepsilon)$ is the smallest number of $\varepsilon$-balls needed to cover $X$.
+	
+	Note that box dimension exists only if this limit exists.
+\end{definition}
+
+This definition satisfies the first and second desired property (\ref{propr:desirable}:\ref{propr:desirable1},\ref{propr:desirable2}).
+However, if we consider $X = \{0\} \cup \{\frac{1}{n} \mid n \in \N^*\}$, then $\dim_B(X) > 0$, but $X$ is countable.
+Therefore, it does not satisfies the third desired property (\ref{propr:desirable}:\ref{propr:desirable3}).
 
 \subsubsection{Hausdorff Dimension}
-\paragraph{Definition}
+The Hausdorff dimension (sometimes also called fractal dimension) is considered to be the most accurate of all, in particular when studying fractal, as it will be the case later in this paper.
+It is more involved than both the topological (def. \ref{def:topological_dimension}) and the box (def. \ref{def:box_dimension}) dimensions.
 
-\paragraph{Properties}
+\begin{definition}[Hausdorff/fractal dimension]\label{def:Hausdorff_dimension}
+	The Hausdorff dimension $\dim_B$ of a set $X$ is defined as follows:
+	$$
+	H_{\varepsilon}^d(X) = 
+	\inf_{\substack{\mathcal{U} \text{ open cover of } X\\
+			U \in \, \mathcal{U} \implies \diam{U} < \varepsilon}}
+		\left\lbrace \sum_{U \in \, \mathcal{U}} \diam{U}^d \right\rbrace
+	$$
+	
+	$$
+	H^d(X) = \lim_{\varepsilon \to 0} H_{\varepsilon}^d(X)
+	$$
+	
+	$$
+	\dim_H(X) = \inf \{ \delta \mid H^{\delta}(X) = 0 \}
+	$$
+	
+	Note that $H^d$ defines the $d$-dimensional measure (for all $d \geq 0$).
+\end{definition}
 
-\subsubsection{Relation Between Dimensions}
+This definition satisfies all three of the desired property (\ref{propr:desirable}:\ref{propr:desirable1},\ref{propr:desirable2},\ref{propr:desirable3}).
+The first two are clear from definition.
+\begin{property}
+	Countable sets have Hausdorff dimension 0.
+\end{property}
+\begin{proof}
+	Suppose $X = \{ x_n \mid n \in \N \}$ is countable.
+	Let $\epsilon > 0$, and take $\{ \epsilon_n \mid n \in \N \}$ such that $\sum_{n=0}^{\infty} \epsilon_n^d < \epsilon$.
+	Then $\mathcal{B} = \{ B(x_n,\epsilon_n) \mid n \in \N \}$ is an open cover fo $X$, so $H_{\epsilon}^d(X) \leq \epsilon$.
+	Thus $H^d(X) = 0$ for all $d \geq 0$.
+	So finally, $\dim_H(X) = 0$.
+\end{proof}
+
+However, the Hausdorff dimension is usually harder to calculate in practice.
+
+\subsubsection{Some Relations Between Dimensions}
+For dimension definition, there is a choice to make between highly accurate, but hard to calculate (Hausdorff dimension) and less accurate but easier to calculate (Topological/Box dimension) definitions.
+It is therefore very useful to know some relationships between the three notions (it is then possible to use, for example, box dimension to give estimates for the Hausdorff dimension).
+
+\begin{property}[Upper bound for fractal dimension]
+	Box dimension is greater than or equal to Hausdorff dimension.
+\end{property}
+\begin{proof}
+	For a set $X$ (with box dimension well defined):
+	Let $\eta > 0$, $\gamma = dim_B(X) + \eta$ and $\delta = dim_B(X) + 2\eta$.
+	Then, $\exists \, \epsilon > 0$ such that $X$ can be covered by $N(\epsilon) < \epsilon^{-\gamma}$ $\epsilon$-balls.
+	Thus, $H_{\epsilon}^{\delta}(X) \leq \epsilon^{-\gamma}\epsilon^{\delta} = \epsilon^{\eta}$, so $H^{\delta}(X) = 0$.
+	This gives $\dim_H(X) < \dim_B(X) + 2\eta \quad \forall \eta > 0$, and finally, $\dim_H(X) < \dim_B(X)$.
+\end{proof}
+
+Thus, by calculating the box dimension, we also have an upper bound for the Hausdorff dimension.
+
+\begin{lemma}
+	If the $d$-dimensional Lebesgue measure is non-zero, then the Hausdorff dimension is greater or equal to d.
+\end{lemma}
+\begin{proof}
+	Suppose a set $X$ is such that $\dim_H(X)<d$.
+	\begin{claim}
+		$H^d(X) < \infty \implies H^c(X) = 0 \quad \forall c > d$
+	\end{claim}
+	\begin{proof}
+		As $H^d(X) < \infty$: For all $\epsilon > 0$ there is an open cover $\mathcal{U}$ for $X$ such that $\sum_{U \in \mathcal{U}} \diam{U}^d < \infty$ and $\diam{U} < \epsilon$.
+		So
+		$$\sum_{U \in \, \mathcal{U}} \diam{U}^c \leq
+		\underbrace{\epsilon^{c-d}}_{\substack{\to 0\\\text{as } \epsilon \to 0}} \ 
+		\underbrace{\sum_{U \in \, \mathcal{U}} \diam{U}^d}_{< \infty}
+		\to 0 \quad \text{ as } \epsilon \to 0
+		$$
+	\end{proof}
+	Thus, $H^d(X) = 0$.
+	Now, the $d$-dimensional Hausdorff measure is a rescaling of usual $d$-dimensional Lebesgue measure, so $\Lambda_d(X) = 0$ \footnote{Writing $\Lambda_d(X)$ for the $d$-dimensional Lebesgue measure of $X$.}.
+	This completes the proof by taking the contrapositive.
+\end{proof}
+
+Thus, finding a $d$ such that the Lebesgue measure is non-zero gives a lower bound for the Hausdorff dimension.
+
+\begin{property}[Lower bound for fractal dimension]
+	Topological dimension is less than or equal to Hausdorff dimension.
+\end{property}
+\begin{proof}
+	This follows directly from last property.
+\end{proof}
+
+In fact, the Hausdorff dimension is bonded by the topological dimension and the box dimension, i.e. for any set $X$, $\dim_T(X) \leq \dim_H(X) \leq \dim_B(X)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fractals}
-
-\subsubsection{Definitions}
 Fractals are mathematical objects that have been studied since the 17th century.
-Generally having a recursive self-similarity pattern, a fractal is defined as a subset of an Euclidean space with non-integral Hausdorff dimension.
- exceeding its topological dimension.
+The recursive self-similarity pattern of most common fractals made their fame across the mathematics and non-mathematics world.
 
+\subsubsection{Formal Definition}
 
 \subsubsection{Famous Examples}
+
 

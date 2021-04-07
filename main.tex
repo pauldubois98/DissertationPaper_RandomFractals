@@ -36,17 +36,15 @@
 \usepackage{makecell}
 %for images
 \usepackage{graphicx}
-\graphicspath{ {./img/} }
+\graphicspath{{./img/}{./illustrations/}}
 %for plots
 \usepackage{tikz}
-\usetikzlibrary{mindmap}
 \usepackage{adjustbox}
 %links
-\usepackage[hyphens]{url}
-\usepackage{hyperref}
+%\usepackage[hyphens]{url}
+%\usepackage{hyperref}
 %\hypersetup{colorlinks=true}
 %citations
-\usepackage[square]{natbib}
 \bibliographystyle{unsrtnat}
 %code
 \usepackage{minted}
@@ -54,14 +52,12 @@
 %\usepackage{listings}
 \usepackage{algpseudocode}
 \definecolor{CodeColor}{RGB}{100, 100, 100}
-%%files tree architecture
-%\usepackage{dirtree}
-
 
 
 %environments
 \newtheorem*{notation}{Notation}
 \newtheorem{definition}{Definition}[section]
+\newtheorem*{claim}{Claim}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{property}{Property}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -76,7 +72,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\D}{\mathbb{D}}
 \newcommand{\R}{\mathbb{R}}
-%\newcommand{\C}{\mathbb{C}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\halfplane}{\mathbb{H}}
 %\newcommand{\dim}[1]{\text{dim}(#1)}
@@ -96,6 +92,7 @@
 \newcommand{\Aut}[1]{\text{Aut}(#1)}
 \newcommand{\legendre}[2]{\left( \frac{#1}{#2} \right)}
 \newcommand{\degree}[1]{\partial #1}
+\newcommand{\diam}[1]{\text{diam}(#1)}
 
 
 
@@ -131,11 +128,11 @@
 	\include{FractalPercolation}
 	\include{Numerics}
 	
+	\bibliography{references}
 	
 	\appendix
 	\include{title_appendix}
 	\include{Plots}
 	\include{Codes}
 	
-	\bibliography{references}
 \end{document}
