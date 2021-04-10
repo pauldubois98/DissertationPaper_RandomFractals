@@ -23,11 +23,11 @@ The rule of thumb to calculate the dimension is to double (or, in general, multi
 If there is $N$ original objects, the dimension is $d = \frac{ln(N)}{ln(n)}$.
 This is so that when scaling by $n$, the length/area/volume of the set is multiplied by $N = n^d$.
 
-Some objects have a more complicated dimension (in fact, a non-integral one):
+Some objects have a more complicated dimension (in fact, a non-integral one)\footnote{This will be discussed in more details in \ref{fractalsExamples}.}:
 \begin{itemize}
 	\item \textbf{Cantor Set}: dimension $log_3(2) = \frac{ln(2)}{ln(3)} \simeq 0.631$
 	\item \textbf{Koch Snowflake}: dimension $log_3(4) = \frac{ln(4)}{ln(3)} \simeq 1.262$
-	\item \textbf{Sierpiński Triangle}: dimension $log_2(3) = \frac{ln(3)}{ln(2)} \simeq 1.545$
+	\item \textbf{Sierpiński Carpet}: dimension $log_2(8) = \frac{ln(8)}{ln(2)} \simeq 1.893$
 \end{itemize}
 The dimension is much less intuitive for these objects, and it justifies creating a formal mathematical definition.
 
@@ -44,7 +44,7 @@ There are several definition for dimension, satisfying different properties.
 The topological dimension is the most straightforward way to define dimension.
 It relies on the intuition that the boundary of a ball of dimension $d$ should have dimension $d-1$.
 
-\begin{definition}[Topological dimension]\label{def:topological_dimension}
+\begin{definition}[Topological dimension]\label{def:topologicalDimension}
 	The topological dimension $\dim_T(X)$ of a set $X$ is defined recursively through the following:
 	\begin{equation*}
 		\dim_T(X) =
@@ -60,10 +60,10 @@ However, $\dim_T$ is always an integer (this is clear from definition).
 Therefore, it does not satisfies the second desired property (\ref{propr:desirable}:\ref{propr:desirable2}).
 
 \subsubsection{Box Dimension}
-The box dimension is more abstract than the topological one (def. \ref{def:topological_dimension}).
+The box dimension is more abstract than the topological one (def. \ref{def:topologicalDimension}).
 It relies on an intuition mentioned before: if scaled by $n$, a set contains $N$ copies of the original set, then the dimension should be  $\frac{ln(N)}{ln(n)}$.
 
-\begin{definition}[Box dimension]\label{def:box_dimension}
+\begin{definition}[Box dimension]\label{def:boxDimension}
 	The box dimension $\dim_B$ of a set $X$ is defined through the following limit:
 	$$
 	\dim_B(X) = \lim_{\varepsilon \to 0} \frac{ln(N(\varepsilon))}{-log(\varepsilon)}
@@ -79,9 +79,9 @@ Therefore, it does not satisfies the third desired property (\ref{propr:desirabl
 
 \subsubsection{Hausdorff Dimension}
 The Hausdorff dimension (sometimes also called fractal dimension) is considered to be the most accurate of all, in particular when studying fractal, as it will be the case later in this paper.
-It is more involved than both the topological (def. \ref{def:topological_dimension}) and the box (def. \ref{def:box_dimension}) dimensions.
+It is more involved than both the topological (def. \ref{def:topologicalDimension}) and the box (def. \ref{def:boxDimension}) dimensions.
 
-\begin{definition}[Hausdorff/fractal dimension]\label{def:Hausdorff_dimension}
+\begin{definition}[Hausdorff/fractal dimension]\label{def:HausdorffDimension}
 	The Hausdorff dimension $\dim_B$ of a set $X$ is defined as follows:
 	$$
 	H_{\varepsilon}^d(X) = 
@@ -172,7 +172,218 @@ Fractals are mathematical objects that have been studied since the 17th century.
 The recursive self-similarity pattern of most common fractals made their fame across the mathematics and non-mathematics world.
 
 \subsubsection{Formal Definition}
+The strict mathematical definition of a fractal is the following:
+\begin{definition}[Fractal]\label{def:fractal}
+	A fractal is a subset of Euclidean space with a Hausdorff dimension that strictly exceeds its topological dimension (i.e. $X$ is a fractal if $\dim_T(X) < \dim_H(X)$).
+\end{definition}
+Sets with "recursive patterns" are often fractals (which is why this is sometimes taken a the definition for fractals).
 
-\subsubsection{Famous Examples}
+\subsubsection{Famous Examples}\label{fractalsExamples}
+Some fractals became very famous, both for their aesthetic appeal and as an example of a complex structure arising from simple rules.
+Fractals are one of the best-known examples of mathematical visualization and mathematical beauty.
+
+\paragraph{Basin Boundaries of Complex Maps}
+Along the most famous fractals, one finds the ones that arise from looking at the contour of sets (basin boundaries) derived from complex maps.
+
+\begin{wrapfigure}{r}{7.25cm}
+	\centering
+	\includegraphics[width=7.25cm]{MandelbrotSet}
+	\caption[Mandelbrot Set Plot]{Mandelbrot Set Plot\footnotemark}
+	\label{fig:MandelbrotSet}
+	\vspace{-0.75cm}
+\end{wrapfigure}
+\addtocounter{footnote}{-1}
+\stepcounter{footnote}\footnotetext{More details on the plots in the appendix.}
+\subparagraph{Contour of the Mandelbrot Set}
+The Mandelbrot set is a subset of the complex plane defined as follows:
+\begin{definition}[Mandelbrot Set]\label{def:MandelbrotSet}
+	Let $z_0 = 0$ and $z_{n+1} = f_c(z_n)$, with $f_c(z) = z^2+c$.
+	Then, the Mandelbrot set $M \subseteq \C$ is $M = \left\lbrace c \in \C \mid z_n \text{ does not diverges} \right\rbrace$.
+\end{definition}
+
+The Mandelbrot set is not a fractal itself (it is dimension 2, as it contains $\left\lbrace w \in \C \mid | w-1 | < \frac{1}{4} \right\rbrace$ \cite{3DXplorMath}, and is contained in $\C$, both having dimension 2).
+
+It is surprising that the boundary $\partial M$ of $M$ also has Hausdorff dimension 2.
+This was proved by Shishikura in 1992 \cite{Shishikura_1992}, as a consequence of $\partial M$ having a positive 2-dimensional Lebesgue measure (i.e. $\Lambda_2(\partial M) > 0$).
+
+Despite having an integral fractional dimension, $\partial M$ is commonly considered to be a fractal (because the intergality of fractional dimension is not obvious, and the self-similarity of the set).
+
+\subparagraph{Contour of the Julia Set}
+The Julia set is also subset of the complex plane defined similarly to the Mandelbrot set:
+\begin{definition}[Julia Set]\label{def:JuliaSet}
+	For a complex $c \in \C$ constant:
+	Let $z_0 = z$ and $z_{n+1} = f_c(z_n)$, $f_c(z) = z^2+c$ as before.
+	The filled Julia set is $K(f_c) = \left\lbrace z \in \C \mid z_n \text{ does not diverges} \right\rbrace \subseteq \C $.
+	The Julia set $J(f_c) \subseteq \C$ is the boundary of $K(f_c)$.
+\end{definition}
+
+The dimension of $J(f_c)$ will of course depend on $c$.
+It is considered as a fractal even when the dimension is an integer.
+For some values of $c$, dimension of $J(f_c)$ is well known:
+
+\vspace{0.2cm}
+\begin{tabular}{l l l}\label{table:JuliaSetDimensions}
+%	$c$ & $\dim_H(J(f_c))$ & Popular Name \\
+%	\hline
+	$c = 0$             & $\dim_H(J(f_c)) = 1$            & "Circle"\\
+	$c = \frac{1}{4}$   & $\dim_H(J(f_c)) \approx 1.0812$ & \\
+	$c = i$             & $\dim_H(J(f_c)) \approx 1.2$    & "Dendrite" \\
+	$c = -1$            & $\dim_H(J(f_c)) \approx 1.2683$ & \\
+	$c = -0.123+0.745i$ & $\dim_H(J(f_c)) \approx 1.3934$ & "Douady rabbit" \\
+\end{tabular}
+\vspace{0.3cm}
+
+The Mandelbrot set an Julia sets are very closely related.
+In fact, Shishikura proved \cite{Shishikura_1992} that when $c$ is on $\partial M$, then the Julia set $J(f_c)$ associated to it has (Hausdorff) dimension 2.
+Moreover, Heinemann and Stratmann have shown \cite{Heinemann_Stratmann_1998} that when the quadratic $f_c$ is parametrized with $c$ near the boundary of the Mandelbrot st $M$, the Hausdorff dimension of $J(f_c)$ is close to 2.
+
+\begin{figure}[h]
+	\includegraphics[width=5.5cm]{dendrite}
+	\includegraphics[width=5.5cm]{DouadyRabbit}
+	\includegraphics[width=5.5cm]{JuliaSet_0_285+0_01i}
+	\centering
+	\captionsetup{justification=centering}
+	\caption[Julia sets examples]{Popular Julia set plots \newline (left to right: "Dendrite"\footnotemark; "Douady rabbit"\footnotemark; other typical Julia set\footnotemark)}
+	\label{fig:JuliaSet}
+\end{figure}
+\addtocounter{footnote}{-3}
+\stepcounter{footnote}\footnotetext{$c = i$}
+\stepcounter{footnote}\footnotetext{$c = -0.123+0.745i$}
+\stepcounter{footnote}\footnotetext{$c = 0.285+0.01i$}
 
 
+
+\vspace{-0.5cm}
+\begin{wrapfigure}{r}{5cm}
+	\includegraphics[width=5cm]{CantorSet}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Cantor Set (first 6 iterations)}
+	\label{fig:CantorSet}
+	\vspace{-1.5cm}
+\end{wrapfigure}
+\paragraph{Cantor Set}
+The (middle third) Cantor set $C \subseteq \left[ 0,1 \right] $ is constructed as follows:
+\begin{itemize}
+	\item Start with $C_0 = \left[ 0,1 \right]$
+	\item Generate iteratively $C_n = \frac{C_{n-1}}{3} + \frac{2 + C_{n-1}}{3}$
+	\item Take the limit $C = \lim_{n \to \infty} C_n$
+\end{itemize}
+
+The Cantor set satisfies $C = \frac{C}{3} + \frac{2 + C}{3}$, so rescaling by $\frac{1}{3}$, it contains two copies of itself.
+So the intuitive Hausdorff dimension for the Cantor set is $\dim_H(C) = \frac{log(2)}{log(3)} \approx 0.631$.
+This can be proved rigorously (see \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
+
+Another equivalent definition for the cantor set $C$ is "points in $\left[ 0,1 \right]$ with extension in base 3 composed of 0 and 2 only".
+That is:
+$$
+C = \left\lbrace x \in \left[ 0,1 \right] \mid x = \sum_{k=1}^{\infty} x_k 3^{-k}, \ \ x_k \in \{0,2\} \ \forall k \right\rbrace
+$$
+From this definition, it is straightforward that the Cantor set is totally disconnected.
+In fact, fractals with Hausdorff dimension smaller than 1 are totally disconnected (\cite[p. 33, prop. 2.5]{Falconer_1990}).
+
+\begin{wrapfigure}{r}{5cm}
+	\vspace{-0.5cm}
+	\includegraphics[width=5cm]{KochSnowflake}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Koch Snowflake Curve Plot (5 iterations)}
+	\label{fig:KochSnowflake}
+\end{wrapfigure}
+\paragraph{Koch Snowflake}
+Koch Snowflake is an example of a fractal curve.
+Fractal curves are obtained by applying the same transformation recursively to each segment of the previous iteration of the curve.
+Their fractional dimension is in the interval $\left[ 1,2 \right]$ (or in $\left[ 1,2 \right]$ if the curve evolves in a 3D space).
+
+The Koch snowflake is obtained after replacing each edge of an equilateral triangle by a Koch curve with the triangle edge as initial segment.
+
+Now, the Koch curve is defined recursively as follows:
+$K_n$ is the curve at iteration $n$, with segments $K_n^1, \dots K_n^m$.
+For each $i \in \llbracket 1,m \rrbracket$, split $K_n^i$ into 3 equal length segments, and replace the middle one with two new ones as on this diagram:\vspace{0.2cm}\\
+\includegraphics[width=4.5cm]{KochStep}\vspace{0.2cm}\\
+Merging back all segment gives $K_{n+1}$.
+
+The Koch curve starting form a segment $[a,b]$ is the limit curve $K = \lim_{n \to \infty} K_n$ with $K_0 = [a,b]$.
+
+At each level, the Koch curve is scaled by $\frac{1}{3}$, and $4$ copies are created.
+Thus, the intuitive Hausdorff dimension for the Koch curve (which is also the dimension of the Koch snowflake) is $\dim_H(K) = \frac{log(4)}{log(3)} \approx 1.262$.
+This can be proved rigorously using similar techniques as in \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
+
+\begin{wrapfigure}{r}{5cm}
+	\vspace{-0.5cm}
+	\includegraphics[width=6cm]{SierpinskiCarpet}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Sierpinski Carpet (6 steps)}
+	\label{fig:SierpinskiCarpet}
+	\vspace{-3cm}
+\end{wrapfigure}
+\paragraph{Sierpiński Carpet}
+Sierpiński carpet is a fractal constructed recursively by removing parts of its initial set.
+
+The construction starts from a (filled) square.
+Then, at each step, split every square into 9 sub-square as follows:\\
+\includegraphics[width=4cm]{SierpinskiCarpetStep}\\
+Remove the central square, and repeat the operation on the remaining 8 squares.
+
+The figure is made of $8$ copies of itself, scaled by a factor of $\frac{1}{3}$.
+Therefore, the intuitive Hausdorff dimension for this set is $\dim_H(K) = \frac{log(8)}{log(3)} \approx 1.893$.
+Again, this can be proved rigorously using similar techniques as in \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
+
+
+\subsubsection{Real Life Fractals}
+Fractals are more than mathematical constructions, they in fact also occur in nature.
+Of course, the limit is never reached, because of the physical constraints of nature.
+However, this gives a good motivation for studying fractals mathematically.
+
+\paragraph{Plants}
+Some plants (not even genetically modified) have self-similarity patterns, and may therefore be considered as fractals.
+
+
+\subparagraph{Ferns}
+Perhaps the most obvious and popular natural fractal: Ferns leaves.
+The leaves are self-similar, with varying pattern across variety of ferns.
+
+\subparagraph{Cauliflower}
+A less obvious example: Cauliflowers' surface is a fractal.
+In fact, since each branch splits into about 13 branches, each about 3 times shorter, the approximate dimension of a Cauliflower's surface is $log_3(13) \approx 2.335$.
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}{.49\textwidth}
+		\includegraphics[height=4cm]{Fern}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Fern Leave}
+		\label{fig:fern}
+	\end{subfigure}
+	\begin{subfigure}{.49\textwidth}
+		\includegraphics[height=4cm]{Cauliflower}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Cauliflower}
+		\label{fig:cauliflower}
+	\end{subfigure}
+	\caption{Plants Fractals}
+	\label{fig:plantsFractals}
+\end{figure}
+
+
+\begin{wrapfigure}{r}{5.75cm}
+	\includegraphics[width=6cm]{UKCoastlines}
+	\centering
+	\caption{United Kingdom Coastlines}
+	\label{fig:UKCoastlines}
+\end{wrapfigure}
+\paragraph{Coastline of Islands}
+When trying to measure the length of coastlines, scientists realized that the more precise their attempt was, the higher was the value of the length found.
+In fact, this makes sense: the approximation of a curve with shorter segments will capture more of the smaller curve details, resulting in a longer length.
+The approximate length found could be made arbitrary large after approximating using smaller and smaller segments.
+This yields the fact that the coastline is a fractal with dimension greater than one.
+
+Using electronic maps, we try to estimate the fractal dimension of the coastlines for the UK islands, Iceland and Madagascar.
+More details on the calculations techniques used are given in the appendix (see \ref{appendix:coastlines}).
+The (approximate) coastline dimension for UK, Iceland, and Madagascar are respectively $1.24$, $1.25$, and $1.06$.
+
+The coastlines of the UK and Iceland are much more messy than the one of Madagascar.
+The approximate values found for coastlines dimensions therefore make sense.
