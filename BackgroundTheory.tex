@@ -1,12 +1,12 @@
 % !TeX spellcheck = en_GB
 \section{Background Theory}
+We derive here a mathematical basis for dimensionality and fractal.
+This will be used later in our more specific study of random fractals.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dimensions}
 The concept of dimension is quite intuitive from a day-life perceptive.
 However, the mathematical concept is more involved.
-From the non-mathematical world, this can be used to have better understanding of biology: DNA segments are crooked enough be considered as object with dimension greater than one.
+From the non-mathematical world, this can be used to have better understanding of other object arising from other fields.
 
 \subsubsection{Intuition}
 Some object that we are used to work with have a very commonly admitted dimension:
@@ -20,14 +20,14 @@ Some object that we are used to work with have a very commonly admitted dimensio
 All of these usual objects have integral dimensions, making it (relatively) easy to understand.
 
 The rule of thumb to calculate the dimension is to double (or, in general, multiply by $n$) the size of the object, and count the number of copies of the original object obtained.
-If there is $N$ original objects, the dimension is $d = \frac{ln(N)}{ln(n)}$.
+If there is $N$ original objects, the dimension is $d = \frac{\ln(N)}{\ln(n)}$.
 This is so that when scaling by $n$, the length/area/volume of the set is multiplied by $N = n^d$.
 
 Some objects have a more complicated dimension (in fact, a non-integral one)\footnote{This will be discussed in more details in \ref{fractalsExamples}.}:
 \begin{itemize}
-	\item \textbf{Cantor Set}: dimension $log_3(2) = \frac{ln(2)}{ln(3)} \simeq 0.631$
-	\item \textbf{Koch Snowflake}: dimension $log_3(4) = \frac{ln(4)}{ln(3)} \simeq 1.262$
-	\item \textbf{Sierpiński Carpet}: dimension $log_2(8) = \frac{ln(8)}{ln(2)} \simeq 1.893$
+	\item \textbf{Cantor Set}: dimension $\log_3(2) = \frac{\ln(2)}{\ln(3)} \simeq 0.631$
+	\item \textbf{Koch Snowflake}: dimension $\log_3(4) = \frac{\ln(4)}{\ln(3)} \simeq 1.262$
+	\item \textbf{Sierpiński Carpet}: dimension $\log_2(8) = \frac{\ln(8)}{\ln(2)} \simeq 1.893$
 \end{itemize}
 The dimension is much less intuitive for these objects, and it justifies creating a formal mathematical definition.
 
@@ -49,8 +49,8 @@ It relies on the intuition that the boundary of a ball of dimension $d$ should h
 	\begin{equation*}
 		\dim_T(X) =
 		\begin{cases}
-			0 & \text{if } \ \forall x \in X, \ \exists \, r>0 \text{ s.t. } \partial B_r(x) \cap X = \emptyset\\
-			d & \text{if } \ \forall x \in X, \ \exists \, r>0 \text{ s.t. } \dim_T(\partial B_r(x) \cap X) = d-1
+			-1 & \text{if } \ X = \emptyset \\
+			 d & \text{if } \ d = \min \left\lbrace n \in \N \mid \forall x \in X, \ \exists \, r>0 \text{ s.t. } \dim_T(\partial B_r(x) \cap X) \leq n-1 \right\rbrace
 		\end{cases}
 	\end{equation*}
 \end{definition}
@@ -61,12 +61,12 @@ Therefore, it does not satisfies the second desired property (\ref{propr:desirab
 
 \subsubsection{Box Dimension}
 The box dimension is more abstract than the topological one (def. \ref{def:topologicalDimension}).
-It relies on an intuition mentioned before: if scaled by $n$, a set contains $N$ copies of the original set, then the dimension should be  $\frac{ln(N)}{ln(n)}$.
+It relies on an intuition mentioned before: if scaled by $n$, a set contains $N$ copies of the original set, then the dimension should be  $\frac{\ln(N)}{\ln(n)}$.
 
 \begin{definition}[Box dimension]\label{def:boxDimension}
 	The box dimension $\dim_B$ of a set $X$ is defined through the following limit:
 	$$
-	\dim_B(X) = \lim_{\varepsilon \to 0} \frac{ln(N(\varepsilon))}{-log(\varepsilon)}
+	\dim_B(X) = \lim_{\varepsilon \to 0} \frac{\ln(N(\varepsilon))}{-\log(\varepsilon)}
 	$$
 	Here, $N(\varepsilon)$ is the smallest number of $\varepsilon$-balls needed to cover $X$.
 	
@@ -243,7 +243,7 @@ Moreover, Heinemann and Stratmann have shown \cite{Heinemann_Stratmann_1998} tha
 	\includegraphics[width=5.5cm]{JuliaSet_0_285+0_01i}
 	\centering
 	\captionsetup{justification=centering}
-	\caption[Julia sets examples]{Popular Julia set plots \newline (left to right: "Dendrite"\footnotemark; "Douady rabbit"\footnotemark; other typical Julia set\footnotemark)}
+	\caption[Julia sets examples]{Popular Julia Set Plots \newline (left to right: "Dendrite"\footnotemark; "Douady rabbit"\footnotemark; other typical Julia set\footnotemark)}
 	\label{fig:JuliaSet}
 \end{figure}
 \addtocounter{footnote}{-3}
@@ -271,7 +271,7 @@ The (middle third) Cantor set $C \subseteq \left[ 0,1 \right] $ is constructed a
 \end{itemize}
 
 The Cantor set satisfies $C = \frac{C}{3} + \frac{2 + C}{3}$, so rescaling by $\frac{1}{3}$, it contains two copies of itself.
-So the intuitive Hausdorff dimension for the Cantor set is $\dim_H(C) = \frac{log(2)}{log(3)} \approx 0.631$.
+So the intuitive Hausdorff dimension for the Cantor set is $\dim_H(C) = \frac{\log(2)}{\log(3)} \approx 0.631$.
 This can be proved rigorously (see \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
 
 Another equivalent definition for the cantor set $C$ is "points in $\left[ 0,1 \right]$ with extension in base 3 composed of 0 and 2 only".
@@ -293,7 +293,7 @@ In fact, fractals with Hausdorff dimension smaller than 1 are totally disconnect
 \paragraph{Koch Snowflake}
 Koch Snowflake is an example of a fractal curve.
 Fractal curves are obtained by applying the same transformation recursively to each segment of the previous iteration of the curve.
-Their fractional dimension is in the interval $\left[ 1,2 \right]$ (or in $\left[ 1,2 \right]$ if the curve evolves in a 3D space).
+Their fractional dimension is in the interval $\left[ 1,2 \right]$ (or in $\left[ 1,3 \right]$ if the curve evolves in a three dimensional space).
 
 The Koch snowflake is obtained after replacing each edge of an equilateral triangle by a Koch curve with the triangle edge as initial segment.
 
@@ -305,8 +305,8 @@ Merging back all segment gives $K_{n+1}$.
 
 The Koch curve starting form a segment $[a,b]$ is the limit curve $K = \lim_{n \to \infty} K_n$ with $K_0 = [a,b]$.
 
-At each level, the Koch curve is scaled by $\frac{1}{3}$, and $4$ copies are created.
-Thus, the intuitive Hausdorff dimension for the Koch curve (which is also the dimension of the Koch snowflake) is $\dim_H(K) = \frac{log(4)}{log(3)} \approx 1.262$.
+At each level, the Koch curve is scaled by $\nicefrac{1}{3}$, and $4$ copies are created.
+Thus, the intuitive Hausdorff dimension for the Koch curve (which is also the dimension of the Koch snowflake) is $\dim_H(K) = \frac{\log(4)}{\log(3)} \approx 1.262$.
 This can be proved rigorously using similar techniques as in \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
 
 \begin{wrapfigure}{r}{5cm}
@@ -326,8 +326,8 @@ Then, at each step, split every square into 9 sub-square as follows:\\
 \includegraphics[width=4cm]{SierpinskiCarpetStep}\\
 Remove the central square, and repeat the operation on the remaining 8 squares.
 
-The figure is made of $8$ copies of itself, scaled by a factor of $\frac{1}{3}$.
-Therefore, the intuitive Hausdorff dimension for this set is $\dim_H(K) = \frac{log(8)}{log(3)} \approx 1.893$.
+The figure is made of $8$ copies of itself, scaled by a factor of $\nicefrac{1}{3}$.
+Therefore, the intuitive Hausdorff dimension for this set is $\dim_H(K) = \frac{\log(8)}{\log(3)} \approx 1.893$.
 Again, this can be proved rigorously using similar techniques as in \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
 
 
@@ -346,7 +346,7 @@ The leaves are self-similar, with varying pattern across variety of ferns.
 
 \subparagraph{Cauliflower}
 A less obvious example: Cauliflowers' surface is a fractal.
-In fact, since each branch splits into about 13 branches, each about 3 times shorter, the approximate dimension of a Cauliflower's surface is $log_3(13) \approx 2.335$.
+In fact, since each branch splits into about 13 branches, each about 3 times shorter, the approximate dimension of a Cauliflower's surface is $\log_3(13) \approx 2.335$.
 
 \begin{figure}[!h]
 	\centering
