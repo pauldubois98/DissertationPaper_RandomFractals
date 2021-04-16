@@ -6,28 +6,28 @@ Starting from a unit square, and remove some material to obtain a fractal.
 We will begin with the definition of the percolation process in the two dimensional case, as it will be our main interest (it is also the most intuitive case, as easy to picture).
 We will then extend the definition to other dimensions.
 
-There are two types of percolations: the "plain", and the "recursive", both have their interest, and we will compare the two throughout this study.
+There are two types of percolations: the "classical", and the "recursive", both have their interest, and we will compare the two throughout this study.
 
 
 \begin{wrapfigure}{r}{6.5cm}
 	\vspace{-1.2cm}
 	\centering
-	\includegraphics[width=6.5cm]{plain_percolation}
-	\caption{Plain Percolation\\($n=4, p=0.6$)}
-	\label{fig:plainPercolation}
+	\includegraphics[width=6.5cm]{classical_percolation}
+	\caption{Classical Percolation\\($n=4, p=0.6$)}
+	\label{fig:classicalPercolation}
 \end{wrapfigure}
-\subsection{Plain Percolation}
-The "plain" percolation is the simplest one, as it is only composed of one filtration.
+\subsection{Classical Percolation}
+The "classical" percolation is the simplest one, as it is only composed of one filtration.
 The formal definition goes as follows:
 Split the unit square $\left[ 0,1 \right]^2$ into $n^2$ squares of side $\nicefrac{1}{n}$, indexed by $1 \leq i,j \leq n$:
 $$B_{i,j} = \left[ \frac{i-1}{n}, \frac{i}{n} \right] \times \left[ \frac{j-1}{n}, \frac{j}{n} \right].$$
 Then, each squares will be selected or thrown away, according to random variables $\epsilon_{i,j}$ following a Bernoulli distribution with probability parameter $p$
 \footnote{Writing $x \sim \mathcal{B}(p)$ for $x$ following a Bernoulli distribution with parameter $p$, i.e. $\mathbb{P}(x=1)=p$ and $\mathbb{P}(x=0)=1-p$.},
 $\epsilon_{i,j} \sim \mathcal{B}(p)$.
-Finally, the plain percolation $P$ is
+Finally, the classical percolation $P$ is
 $$P = \bigcup_{i,j \text{ s.t. } \epsilon_{i,j}=1} B_{i,j}.$$
 
-We will adopt the notation $P \sim \text{Perc}(n,p,1)$ for such a setup (a plain percolation of side $n$ and probability parameter $p$).
+We will adopt the notation $P \sim \text{Perc}(n,p,1)$ for such a setup (a classical percolation of side $n$ and probability parameter $p$).
 
 In this case, it is interesting to study the behaviour as $n \to \infty$, we will write $P \sim \text{Perc}(\infty,p,1)$ for $P = \lim_{n \to \infty} P^n$, $P^n \sim \text{Perc}(n,p,1)$.
 
@@ -40,7 +40,7 @@ In this case, it is interesting to study the behaviour as $n \to \infty$, we wil
 \end{wrapfigure}
 \subsection{Recursive Percolation}
 The "recursive" percolation is a little more involved.
-Beginning with a plain percolation, we apply an other one to each of the remaining squares, and continue recursively.
+Beginning with a classical percolation, we apply an other one to each of the remaining squares, and continue recursively.
 
 Formally, for each $1 \leq k \leq d$, split the unit square into $\left( n^k \right)^D$ squares of side $\nicefrac{1}{n^k}$ indexed by $1 \leq i,j \leq n^k$
 $$B_{i,j}^k = \left[ \frac{i-1}{n^k},\frac{i}{n^k} \right] \times \left[ \frac{j-1}{n^k},\frac{j}{n^k} \right].$$
@@ -67,14 +67,14 @@ Now that we defined percolations in two dimensions, it is straightforward to ext
 \paragraph{Extension to $D$ dimensions}
 It suffices to add parameters in the definition to extend it to other dimension, formally:
 
-\subparagraph{Plain}
+\subparagraph{Classical}
 Split the unit cuboid $\left[ 0,1 \right]^D$ into $n^D$ squares of side $\nicefrac{1}{n}$, indexed by $1 \leq i_1,\dots,i_D \leq n$:
 $$B_{i_1,\dots,i_D} = \left[ \frac{i_1-1}{n}, \frac{i_1}{n} \right] \times \dots \times \left[ \frac{i_D-1}{n}, \frac{i_D}{n} \right].$$
 Then, attach to each cuboid a Bernoulli random variable $\epsilon_{i_1,\dots,i_D} \sim \mathcal{B}(p)$.
-The plain percolation $P$ in $D$ dimension is
+The classical percolation $P$ in $D$ dimension is
 $$P = \bigcup_{i_1,\dots,i_D \text{ s.t. } \epsilon_{i_1,\dots,i_D}=1} B_{i_1,\dots,i_D}.$$
 %The number of remaining squares $Z$ is $Z = | \{ (i_1,\dots,i_D) \mid \epsilon_{i_1,\dots,i_D} = 1 \} |$.
-We will denote this setup by $P \sim \text{Perc}^D(n,p,1)$ (a plain percolation of side $n$ and probability parameter $p$ in $D$ dimensions), and write $P \sim \text{Perc}^D(\infty,p,1)$ for $P = \lim_{n \to \infty} P^n$, $P^n \sim \text{Perc}^D(n,p,1)$.
+We will denote this setup by $P \sim \text{Perc}^D(n,p,1)$ (a classical percolation of side $n$ and probability parameter $p$ in $D$ dimensions), and write $P \sim \text{Perc}^D(\infty,p,1)$ for $P = \lim_{n \to \infty} P^n$, $P^n \sim \text{Perc}^D(n,p,1)$.
 
 \subparagraph{Recursive}
 For each $1 \leq k \leq d$, split the unit cuboid into $\left( n^k \right)^D$ cuboid of side $\nicefrac{1}{n^k}$ indexed by $1 \leq i_1,\dots,i_D \leq n^k$
@@ -111,7 +111,7 @@ Since the percolation process involves randomness, the density is not well defin
 However, it is possible to calculate the expected density
 \footnote{The density of a set $X \subseteq \left[ 0,1 \right]^D$ is the proportion of points in the unit cuboid that are also in $X$.}.
 
-It is straightforward to remark that the expected density of a plain percolation $P \sim \text{Perc}^D(n,p,1)$ is $p$ (for all $D$ and all $n$).
+It is straightforward to remark that the expected density of a classical percolation $P \sim \text{Perc}^D(n,p,1)$ is $p$ (for all $D$ and all $n$).
 Note that this density is constant as $n \to \infty$.
 
 Now, for a recursive percolation $P$ such that $P \sim \text{Perc}^D(n,p,d)$, the density is $p^d$.
@@ -122,7 +122,7 @@ Thus, if $P \sim \text{Perc}^D(n,p,\infty)$, the expected density is $0$.
 Again, we can only give an expected dimension, as the process involves randomness.
 We ignore the cases $p=0$ and $p=1$ (these are trivial), and we concentrate on $p \in (0,1)$.
 
-We will treat separately the finite cases, and the two limit cases (limit as plain percolation, and as recursive percolation).
+We will treat separately the finite cases, and the two limit cases (limit as classical percolation, and as recursive percolation).
 
 \paragraph{Finite Cases}
 Take $n$ and $d$ finite, $P \sim \text{Perc}^D(n,p,d)$.
@@ -142,7 +142,7 @@ In practice, this is close to $D$, as soon as $n$ or $d$ grows.
 Note that $\dim_T$ would only differ by the fact that $\dim_T(\emptyset) = -1$ whereas $\dim_H(\emptyset) = 0$.
 Bow dimension $\dim_B$ will be the same as the Hausdorff one.
 
-\paragraph{Plain Percolation}
+\paragraph{Classical Percolation}
 We are looking at $P \sim \text{Perc}^D(\infty,p,1)$.
 \subparagraph{Heuristic Argument}
 Intuitively, the expected dimension of this percolation should be $D$, since the density is positive.
@@ -157,6 +157,14 @@ Therefore, $\dim_H(P) = \dim_H(\left[ 0,1 \right]^D) = D$ almost surely.
 
 \paragraph{Recursive Percolation}
 We are interested in $P \sim \text{Perc}^D(n,p,\infty)$.
+
+\subparagraph{Eventually Empty Percolation}
+In the case of $p < \nicefrac{1}{n^D}$, the number of expected cuboid is less than one.
+Thus, as $d \to \infty$, the percolation will almost surely become empty.
+Therefore, for $p < \nicefrac{1}{n^D}$, $\dim_H(P) = 0$ almost surely. 
+
+Next, we will suppose $p \geq \nicefrac{1}{n^D}$.
+
 \subparagraph{Heuristically}
 In the case of a recursive percolation, $P$ has self-similar properties that can help finding the expected dimension.
 After the first percolation, each selected cuboid is another version of $P$ scaled by $\nicefrac{1}{n}$.
