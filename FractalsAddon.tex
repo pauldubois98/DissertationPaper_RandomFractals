@@ -3,12 +3,33 @@
 Here will be discussed some extensions of famous fractals studied before (in \ref{fractalsExamples}).
 This is not directly relevant for this paper, but an involved reader may be interested.
 
+\begin{wrapfigure}{r}{5.5cm}
+	\vspace{-1.5cm}
+	\includegraphics[width=5.5cm]{MandelbrotSet_colorbar}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Mandelbrot Set}
+	\label{fig:MandelbrotSetColorbar}
+\end{wrapfigure}
 \subsection{Mandelbrot and Julia Sets}
-%plots represent numbe of iterations and blah
+Mandelbrot and Julia sets involve calculating the limit of a sequence to determine if a point is in the set or not.
+More precisely, one needs to determine weather the sequence diverges or not.
+It is impossible to do such calculations with a computer, therefore, we approximate.
+For each initial value $z_0$, we calculate the first values of the sequence.
+We stipulate that the time taken by the sequence to reach $|z_n|>R$ is an indication of how fast the sequence diverges.
+
+The plots are then made as follows:
+We calculate the first $M$ values of the sequence.
+If $|z_n|>R$ for some $n<M$, then let $g(z_0) = n$, with $n$ the smallest such integer.
+If $|z_n| \leq R$ for all $n<M$, then let $g(z_0) = M$.
+Finally, plot $g$ on the area $S \subseteq \C$ of interest.
+
+On the figures \ref{fig:MandelbrotSet} and \ref{fig:JuliaSets}, the settings are $R=2$ and $M=100$.
+The plot represent the value of $g$ through colours, with the same colour-bar as in fig. \ref{fig:MandelbrotSetColorbar}.
 
 
 \subsection{Sierpiński Fractals}
-Following the idea of Sierpiński carpet, several othe fractals may be generated.
+Following the idea of Sierpiński carpet, several fractals may be generated.
 First, using (equilateral) triangles instead of squares:
 
 \begin{wrapfigure}{r}{5cm}
@@ -35,14 +56,6 @@ Again, this can be proved rigorously using similar techniques as in \cite[p. 34-
 \paragraph{Sierpiński 3D Fractals}
 Seen previously, Sierpiński carpet and triangle live in a 2D world, but the idea of Sierpiński fractal may also be extended to 3D.
 
-\begin{wrapfigure}{r}{5.75cm}
-	\includegraphics[width=6cm]{MengerSponge}
-	\centering
-	\captionsetup{justification=centering}
-	\caption{Menger Sponge \\(4 steps)}
-	\label{fig:MengerSponge}
-	\vspace{-0.5cm}
-\end{wrapfigure}
 \subparagraph{Menger sponge}
 The Menger sponge is the generalisation of Sierpiński carpet to 3 dimensions.
 
@@ -51,15 +64,6 @@ Repeat this operation on each of the 20 remaining cubes.
 
 From this construction arise a fractal with dimension $\frac{log(20)}{log(3)} \approx 2.727$.
 
-\begin{wrapfigure}{r}{5cm}
-	\vspace{-0.5cm}
-	\includegraphics[width=5.25cm]{SierpinskiTetrahedron}
-	\centering
-	\captionsetup{justification=centering}
-	\caption{Sierpiński Tetrahedron \\(5 steps)}
-	\label{fig:SierpinskiTetrahedron}
-	\vspace{-1.25cm}
-\end{wrapfigure}
 \subparagraph{Sierpiński tetrahedron}
 The Sierpiński tetrahedron (or tetrix) is the analogue of Sierpiński triangle in 3 dimensions.
 Start with a regular tetrahedron; split it into 5 identical copies scaled by $\frac{1}{2}$, and remove the central one.
@@ -67,6 +71,40 @@ Repeat this operation on each of the 4 remaining tetrahedrons.
 
 From this construction arise a fractal with dimension $\frac{log(4)}{log(2)} = 2$.
 Note that this set is dimension exactly 2 while not being a surface.
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=3.25cm]{MengerSpongePhysics}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Menger Sponge\\ 3D Printed (2 steps)}
+		\label{fig:MengerSponge3Dprinted}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=5cm]{MengerSponge}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Menger Sponge\\ 3D Model (4 steps)}
+		\label{fig:MengerSponge}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=3.5cm]{SierpinskiTetrahedron}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Sierpiński Tetrahedron\\ 3D Model (5 steps)}
+		\label{fig:SierpinskiTetrahedron}
+	\end{subfigure}
+	\begin{subfigure}{.24\textwidth}
+		\includegraphics[width=2.8cm]{SierpinskiTetrahedronPhysics}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Sierpiński Tetrahedron\\ 3D Printed (2 steps)}
+		\label{fig:SierpinskiTetrahedron3Dprinted}
+	\end{subfigure}
+	\caption{Sierpiński 3D Fractals}
+	\label{fig:Sierpinski3D}
+\end{figure}
 
 \subsection{Coastline of Islands}\label{appendix:coastlines}
 The coastline can be measured at different scales.
@@ -82,13 +120,29 @@ In this paper, 3 islands will be considered: The United Kingdom, Iceland, and Ma
 The United Kingdom and Iceland are understood as having messy coastlines (so should have a high Hausdorff dimension), whereas Madagascar is though to have a rather smooth coastline (Hausdorff dimension close to one).
 
 \begin{figure}[!h]
-	\includegraphics[scale=0.6]{UKCoastlines}
-	\hspace{1.5cm}
-	\includegraphics[scale=0.5]{IcelandCoastlines}
-	\hspace{1.5cm}
-	\includegraphics[scale=0.55]{MadagascarCoastlines}
 	\centering
-	\caption{Coastlines (coloured in green) of the UK, Iceland, and Madagascar.}
+	\begin{subfigure}{.33\textwidth}
+		\includegraphics[scale=0.6]{UKCoastlines}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{United Kingdom}
+		\label{fig:UKCoastlines}
+	\end{subfigure}
+	\begin{subfigure}{.33\textwidth}
+		\includegraphics[scale=0.4]{IcelandCoastlines}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Iceland}
+		\label{fig:IcelandCoastlines}
+	\end{subfigure}
+	\begin{subfigure}{.30\textwidth}
+		\includegraphics[scale=0.5]{MadagascarCoastlines}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Madagascar}
+		\label{fig:MadagascarCoastlines}
+	\end{subfigure}
+	\caption{Coastlines (coloured in green).}
 	\label{fig:islandsCoastlines}
 \end{figure}
 
@@ -113,8 +167,7 @@ It is then straightforward to measure the length of the contour (in pixels, whic
 Repeating this operation for each scale of the map gives an array of coastline length with associated scales.
 
 Plotting the values in a log-log plot show a nearly straight line; the approximate dimension will be given by the slope of the best fitting line.
-We obtained the following dimensions:
-
+We obtained the following dimensions:\\
 \begin{tabular}{l l}\label{table:islandsDimensionRegression}
 	\textbf{United Kingdom} & $D \approx 1.2354$ \\
 	\textbf{Iceland}        & $D \approx 1.2466$ \\
