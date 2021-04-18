@@ -1,6 +1,6 @@
 % !TeX spellcheck = en_GB
 \section{More on Fractals}
-Here will be discussed some extensions of famous fractals studied before (in \ref{fractalsExamples}).
+Here will be discussed some extensions of famous fractals studied before (in section \ref{fractalsExamples}).
 This is not directly relevant for this paper, but an involved reader may be interested.
 
 \begin{wrapfigure}{r}{5.5cm}
@@ -13,7 +13,7 @@ This is not directly relevant for this paper, but an involved reader may be inte
 \end{wrapfigure}
 \subsection{Mandelbrot and Julia Sets}
 Mandelbrot and Julia sets involve calculating the limit of a sequence to determine if a point is in the set or not.
-More precisely, one needs to determine weather the sequence diverges or not.
+More precisely, one needs to determine whether the sequence diverges or not.
 It is impossible to do such calculations with a computer, therefore, we approximate.
 For each initial value $z_0$, we calculate the first values of the sequence.
 We stipulate that the time taken by the sequence to reach $|z_n|>R$ is an indication of how fast the sequence diverges.
@@ -25,11 +25,11 @@ If $|z_n| \leq R$ for all $n<M$, then let $g(z_0) = M$.
 Finally, plot $g$ on the area $S \subseteq \C$ of interest.
 
 On the figures \ref{fig:MandelbrotSet} and \ref{fig:JuliaSets}, the settings are $R=2$ and $M=100$.
-The plot represent the value of $g$ through colours, with the same colour-bar as in fig. \ref{fig:MandelbrotSetColorbar}.
+The plots represent the value of $g$ through colours, with the same colour-bar as in fig. \ref{fig:MandelbrotSetColorbar}.
 
 
 \subsection{Sierpiński Fractals}
-Following the idea of Sierpiński carpet, several fractals may be generated.
+Following the idea of the Sierpiński carpet, several fractals may be generated.
 First, using (equilateral) triangles instead of squares:
 
 \begin{wrapfigure}{r}{5cm}
@@ -44,7 +44,7 @@ First, using (equilateral) triangles instead of squares:
 \subparagraph{Sierpiński Triangle}
 Sierpiński triangle is also a fractal constructed recursively by removing parts of its initial set, following a pattern similar to the one for Sierpiński carpet (although, there are equivalent definitions).
 
-The construction is starts from an equilateral triangle.
+The construction starts from an equilateral triangle.
 Then, at each step, split every equilateral triangle into 4 sub-triangles as follows:\\
 \includegraphics[width=4cm]{SierpinskiTriangleStep}\\
 Remove the central triangle, and repeat the operation on the remaining 3 triangles.
@@ -54,12 +54,12 @@ Therefore, the intuitive Hausdorff dimension for this set is $\dim_H(K) = \frac{
 Again, this can be proved rigorously using similar techniques as in \cite[p. 34-35, ex. 2.7]{Falconer_1990}.
 
 \paragraph{Sierpiński 3D Fractals}
-Seen previously, Sierpiński carpet and triangle live in a 2D world, but the idea of Sierpiński fractal may also be extended to 3D.
+As seen previously, the Sierpiński carpet and triangle live in a 2D world, but the idea of Sierpiński fractals may also be extended to 3D.
 
 \subparagraph{Menger sponge}
 The Menger sponge is the generalisation of Sierpiński carpet to 3 dimensions.
 
-Start with a cube; split it into 27 identical copies scaled by $\frac{1}{3}$, and remove the central one, and the 6 cubes sharing a face with the central cube.
+Start with a cube; split it into 27 identical copies scaled by $\frac{1}{3}$, and remove the central one, and the 6 cubes sharing a face with this central cube.
 Repeat this operation on each of the 20 remaining cubes.
 
 From this construction arise a fractal with dimension $\frac{log(20)}{log(3)} \approx 2.727$.
@@ -112,12 +112,12 @@ As the scale is refined, one measures a more detailed curve, which leads to a la
 This refinement can be done indefinitely: from segments of $1000km$ (one would only capture the rough coastline shape) to segments of $1mm$ (one would need to go around every grain of sand), and even further considering sub-atomic scales.
 
 Following this reasoning, the (1D) length of coastlines is infinite.
-It is in fact a fractal with dimension greater than one (but less than 2, as contain in a plane).
+It is in fact a fractal with dimension greater than one (but less than 2, as contained in a plane).
 
 It is then possible to measure how disordered the coastline of an island is, by approximating its Hausdorff dimension.
 This will be done macroscopically, using maps extracted from the Google Maps service.
 In this paper, 3 islands will be considered: The United Kingdom, Iceland, and Madagascar.
-The United Kingdom and Iceland are understood as having messy coastlines (so should have a high Hausdorff dimension), whereas Madagascar is though to have a rather smooth coastline (Hausdorff dimension close to one).
+The United Kingdom and Iceland are understood as having irregular coastlines (so should have a high Hausdorff dimension), whereas Madagascar is thought to have a rather smooth coastline (Hausdorff dimension close to one).
 
 \begin{figure}[!h]
 	\centering
@@ -146,7 +146,7 @@ The United Kingdom and Iceland are understood as having messy coastlines (so sho
 	\label{fig:islandsCoastlines}
 \end{figure}
 
-Of course, fractal dimension can only be an approximation.
+Of course, the fractal dimension can only be an approximation.
 We approach the problem as follows:
 First, we take a high resolution map of the island, and split it into a binary colour image, black for the ground, and white for the surrounding sea (as in fig. \ref{fig:islandsCoastlines}).
 Then, we reduce the size of the image by merging pixels ("pixelizing") to obtain lower resolution images.
@@ -166,7 +166,7 @@ Now, using computer vision (as a Python package), we obtain the contours of the 
 It is then straightforward to measure the length of the contour (in pixels, which can be converted to kilometres as we know the scale of the image).
 Repeating this operation for each scale of the map gives an array of coastline length with associated scales.
 
-Plotting the values in a log-log plot show a nearly straight line; the approximate dimension will be given by the slope of the best fitting line.
+Plotting the values in a log-log plot shows a nearly straight line; the approximate dimension will be given by the slope of the best fitting line.
 We obtained the following dimensions:\\
 \begin{tabular}{l l}\label{table:islandsDimensionRegression}
 	\textbf{United Kingdom} & $D \approx 1.2354$ \\
