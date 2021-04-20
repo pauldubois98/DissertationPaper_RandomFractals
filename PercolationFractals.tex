@@ -211,9 +211,13 @@ This implies that in expectation, $\sqrt{D}^{\alpha} \leq H^{\alpha}(P)$.
 Thus, $\mathbb{E} \left( H^{\alpha}(P) \right)  \geq \sqrt{D}^{\alpha} > 0$.
 
 Finally, as $0 < H^{\alpha}(P) < \infty$, we get $\mathbb{E}(\dim_H(P)) = \alpha = D + \log_n(p)$.
-For plots of $D = 1,\dots,5$ see \url{https://pauldubois98.github.io/PercolationFractalsStudy/percolation.html}.
+
+Letting $W^k = \frac{Z^k}{\left( pn^D \right)^k}$, we have $W^k \to W \text{ a.s. when } k \to \infty$, with $W$ a random variable such that $\mathbb{E}(W) = 1$.
+Use this to get almost sure result?
+
 \subparagraph{Dimension Plots}
 In starting from two dimensions ($D = 2$), the recursive percolations dimension behave as in fig. \ref{fig:dimension2D}.
+For plots of $D = 1,\dots,5$ see \url{https://pauldubois98.github.io/PercolationFractalsStudy/percolation.html}.
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=12cm]{dimension_2D}
@@ -255,7 +259,7 @@ Figure \ref{fig:blobMeasures} shows the four metrics on a typical percolation bl
 	\label{fig:blobMeasures}
 \end{figure}
 
-\paragraph{Simulations}
+\paragraph{Simulations}\label{blob}
 The study of the central blob from a mathematical theory perspective is hard.
 However, it is possible to get some understanding of the blob by generating percolation simulations.
 The following results were obtained from taking the average over 50000 percolations generated randomly, and looking at the blob of each percolation.
@@ -384,7 +388,6 @@ Thus, the step distance is nearly zero on average.
 	\caption{Blob Step Distance}
 	\label{fig:blobStepDistance}
 \end{figure}
-
 
 %\subsection{Random Walks}
 
