@@ -1,234 +1,259 @@
 % !TeX spellcheck = en_GB
+\begin{wrapfigure}{r}{8.7cm}
+	\vspace{-0.75cm}
+	\begin{subfigure}{4.3cm}
+		\includegraphics[width=4.2cm]{percolation_fluid}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{No vertical crossing: \\Fluid is stuck}
+		\label{fig:percolationFluidNoCrossing}
+	\end{subfigure}
+	%\hspace{0.5cm}
+	\begin{subfigure}{4.2cm}
+		\includegraphics[width=4.2cm]{percolation_fluid_bis}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Vertical crossings: \\Fluid can traverse}
+		\label{fig:percolationFluidCrossing}
+	\end{subfigure}
+	\centering
+	\caption{Percolations and Fluids}
+	\label{fig:percolationFluid}
+\end{wrapfigure}
 \section{Percolation Crossings}
-We are now interested in the existence of crossings from one side of the unit cuboid to the other side.
+We are now interested in crossings from one side of the unit cuboid to the other side.
+There is some physical motivation for such questions:
+Suppose the percolation was a mathematical model for a physical material.
+If $P$ has a crossing, then a fluid can pass through the material layer.
+However, it will be stuck if there is no crossing.
+The length of the crossing will tell how long it takes for the fluid to traverse the material.
+
+The convention in mathematics is to study horizontal crossings, despite the more clear physical interpretation of vertical ones.
+Rotating 90$^{\circ}$ transforms vertical crossings to horizontal ones and vice-versa, so studying either is equivalent.
+We choose to stick to the mathematical convention.
 
 \subsection{Types of Crossings}
 There will be three types of crossing considered, according how the path of is allowed to behave.
 
-Consider a percolation $P$ on the unit cuboid $\left[ 0,1 \right]^D$ in $D$ dimensions, and $\gamma: \left[ 0,1 \right] \to \left[ 0,1 \right]^D$ to be a crossing of the cuboid, i.e. $\gamma(0) \in 0 \times \left[ 0,1 \right]^{D-1}$ and $\gamma(1) \in 1 \times \left[ 0,1 \right]^{D-1}$.
-
+Consider a percolation $P$ on the unit cuboid $\left[ 0,1 \right]^D$ in $D$ dimensions, and let $\gamma: \left[ 0,1 \right] \to \left[ 0,1 \right]^D$ be a crossing of the cuboid, i.e. $\gamma(0) \in \{ 0 \} \times \left[ 0,1 \right]^{D-1}$ and $\gamma(1) \in \{ 1 \} \times \left[ 0,1 \right]^{D-1}$.
 In the case of a finite percolation\footnote{i.e. $P \sim \text{Perc}^D(n,p,d)$ with $n,d < \infty$}, we can view a crossing as a walk on the cuboids of side $\nicefrac{1}{n^d}$.
 
 \paragraph{Straight}
-The crossing is said to be straight if $\gamma(x) = x \times (a_2,\dots,a_D)$.
+The crossing is said to be straight if $\gamma(y) = y \times (x_2,\dots,x_D)$.
 That is, if the path goes on a direct line from one side to the other.
-For finite percolations, this means only one step direction is allowed.
+Only one step direction is allowed.
+%Refer to fig. \ref{fig:crossing-straight}.
 
 \paragraph{Semi-Straight}
-The crossing is said to be semi-straight if $\forall \, 0 \leq x < y \leq 1, \ \gamma(x)_0 < \gamma(y)_0$.
+The crossing is said to be semi-straight if $\forall \, 0 \leq y < z \leq 1, \ \gamma(y)_0 < \gamma(z)_0$\footnote{Writing $\gamma(y)_0$ for the first component of $\gamma(y)$.}.
 That is, if the path never goes backwards.
-For finite percolation, this allows steps in $2D-1$ direction: all the possible directions except $(-1,0,\dots,0)$.
+This allows steps in $2D-1$ direction: all the possible directions except $(-1,0,\dots,0)$.
+%Refer to fig. \ref{fig:crossing-semi-straight}.
 
 \paragraph{Non-Straight}
 If the crossing is neither straight or semi-straight, then it is non-straight.
+In the latter case, all steps directions are allowed.
+%Refer to fig. \ref{fig:crossing-non-straight}.
 
-The following illustrate the different types of crossings in two dimensions (the easiest to picture), extension to greater dimensions is straightforward.
-\begin{figure}[h]
-	\includegraphics[width=5.4cm]{crossing-straight}
-	\hspace{0.15cm}
-	\includegraphics[width=5.4cm]{crossing-semi-straight}
-	\hspace{0.15cm}
-	\includegraphics[width=5.4cm]{crossing-non-straight}
-	\centering
-	\caption{Straight, Semi-Straight, and Non-Straight Crossings}
+The following (fig. \ref{fig:crossingTypes}) illustrate the different types of crossings in two dimensions (the easiest to picture), extension to greater dimensions is straightforward.
+\begin{figure}[!h]
+	\begin{subfigure}{0.3\linewidth}
+		\includegraphics[width=5.4cm]{crossing-straight}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Straight}
+		\label{fig:crossingStraight}
+	\end{subfigure}
+	\hspace{0.04\linewidth}
+	\begin{subfigure}{0.3\linewidth}
+		\includegraphics[width=5.4cm]{crossing-semi-straight}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Semi-Straight}
+		\label{fig:crossingSemiStraight}
+	\end{subfigure}
+	\hspace{0.04\linewidth}
+	\begin{subfigure}{0.3\linewidth}
+		\includegraphics[width=5.4cm]{crossing-non-straight}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Non-Straight}
+		\label{fig:crossingNonStraight}
+	\end{subfigure}
+	\caption{Crossing types studied.}
 	\label{fig:crossingTypes}
 \end{figure}
+When talking about a "crossing" in general, we will assume it may be either straight, semi-straight, or non-straight.
 
-\subsection{Finding Crossings}
-Percolations are complicated objects.
-Even for finite percolations, say one with side $n$, depth $d$ in $D$ dimensions, here are $2^{\left( n^D \right)^d}$ possibilities.
-This grows extremely rapidly, and makes theoretical results hard to derive.
 
-Therefore, most of the time, we will use simulations to study these objects.
+\subsection{Percolation Crossings}
+First, we are interested in crossing lying on the percolation $P$.
 
-\paragraph{Examples}
-To see how complicated finding crossing on percolation becomes when $d$ grows, we look at some examples in two dimensions ($D=2$), with sides $n=2,3,5$ (see fig. \ref{fig:crossingExPerc2}, \ref{fig:crossingExPerc3}, \ref{fig:crossingExPerc5}).
-%\begin{figure}[!h]
-%	\includegraphics[width=3.1cm]{crossing-ex_perc2step1}
-%	\hspace{0.1cm}
-%	\includegraphics[width=3.1cm]{crossing-ex_perc2step3}
-%	\hspace{0.1cm}
-%	\includegraphics[width=3.1cm]{crossing-ex_perc2step5}
-%	\hspace{0.1cm}
-%	\includegraphics[width=3.1cm]{crossing-ex_perc2step7}
-%	\hspace{0.1cm}
-%	\includegraphics[width=3.1cm]{crossing-ex_perc2step9}
-%	\centering
-%	\caption{Crossings for a percolation with side $n=2$, at depths $k=1,3,5,7,9$.}
-%	\label{fig:crossingExPerc2}
-%\end{figure}
-\begin{figure}[!h]
-	\includegraphics[width=3.1cm]{crossing-ex_perc2step2}
-	\hspace{0.1cm}
-	\includegraphics[width=3.1cm]{crossing-ex_perc2step3}
-	\hspace{0.1cm}
-	\includegraphics[width=3.1cm]{crossing-ex_perc2step4}
-	\hspace{0.1cm}
-	\includegraphics[width=3.1cm]{crossing-ex_perc2step5}
-	\hspace{0.1cm}
-	\includegraphics[width=3.1cm]{crossing-ex_perc2step6}
-	\centering
-	\caption{Crossings for a percolation with side $n=2$, at depths $k=2,3,4,5,6$.}
-	\label{fig:crossingExPerc2}
-\end{figure}
-\begin{figure}[!h]
-	\includegraphics[width=4cm]{crossing-ex_perc3step1}
-	\hspace{0.1cm}
-	\includegraphics[width=4cm]{crossing-ex_perc3step2}
-	\hspace{0.1cm}
-	\includegraphics[width=4cm]{crossing-ex_perc3step3}
-	\hspace{0.1cm}
-	\includegraphics[width=4cm]{crossing-ex_perc3step4}
-	\centering
-	\caption{Crossings for a percolation with side $n=3$, at depths $k=1,2,3,4$.}
-	\label{fig:crossingExPerc3}
-\end{figure}
-\begin{figure}[!h]
-	\includegraphics[width=4.9cm]{crossing-ex_perc5step1}
-	\hspace{0.9cm}
-	\includegraphics[width=4.9cm]{crossing-ex_perc5step2}
-	\hspace{0.9cm}
-	\includegraphics[width=4.9cm]{crossing-ex_perc5step3}
-	\centering
-	\caption{Crossings for a percolation with side $n=5$, at depths $k=1,2,3$.}
-	\label{fig:crossingExPerc5}
-\end{figure}
-
-\paragraph{Algorithms}
-\subparagraph{Percolations}
-As (recursive) percolations are generated through a recursive process, it is logical (and elegant) to use a recursive function to generate them computationally.
-We will represent a (finite) percolation $P \sim \text{Perc}^D(n,p,d)$ with a binary $D$-dimensional array of length $n^d$ in each dimensions.
-Note that $D$ is a super-parameter.
-
-This algorithm is given in pseudocode in algorithm \ref{algo:percolationGeneration}. Julia implementations
-\footnote{2D percolation Julia implementation: \url{https://github.com/pauldubois98/PercolationFractalsStudy/blob/main/fractal\_percolation2D.jl}}
-\footnote{3D percolation Julia implementation: \url{https://github.com/pauldubois98/PercolationFractalsStudy/blob/main/fractal\_percolation3D.jl}}
-(used later in simulations for empirical estimations) can be found on the GitHub repository
-\footnote{See \url{https://github.com/pauldubois98/PercolationFractalsStudy}.}.
-
-\begin{algorithm}[!h]
-	\caption{Percolation generation algorithm}\label{algo:percolationGeneration}
-	\begin{algorithmic}[1]
-		\State{\textit{Fills the $\left[ i_1,i_1+n^k\right] \times \cdots \times \left[ i_D,i_D+n^k\right]$ sub-array of $P$.}}
-		\Procedure{percolationFill$^D$}{$P, \ i_1,\dots,i_D, \ n, p, k$}
-			\If{$k = 0$}
-				\State $P[i_1,\dots,i_D] \gets \textbf{random}()\footnotemark < p$ \Comment{stop recursion}
-			\Else
-				\For{$0 \leq j_1,\dots,j_D < n$}
-					\If{$\textbf{random}() < p$}
-						\State $\textsc{percolationFill}(P, \ i_1+(j_1 n^k),\dots,i_D+(j_D n^k), \ n, p, k-1)$ \Comment{recursion}
-					\Else
-						\State $P[i_1:i_1+n^k,\dots,i_D:i_D+n^k] \gets \textbf{zeros$^D$}(n^k,\dots,n^k)$ \Comment{void cells}
-					\EndIf
-				\EndFor
-			\EndIf
-		\EndProcedure
-		\State{\textit{Generates a percolation $P \sim \text{Perc}^D(n,p,d)$.}}
-		\Procedure{percolation$^D$}{$n, p, d$}
-			\State $P \gets \textbf{init$^D$}(n^d,\dots,n^d)$
-			\State $\textsc{percolationFill}(P, \ i_1,\dots,i_D, \ n, p, d)$ \Comment{fill $P$ recursively}
-			\State \textbf{return} $P$
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-\addtocounter{footnote}{-1}
-\stepcounter{footnote}\footnotetext{$\textbf{random}()$ generates a random number $x \sim \mathcal{U}(0,1)$\footnotemark.}
-\addtocounter{footnote}{-1}
-\stepcounter{footnote}\footnotetext{Writing $x \sim \mathcal{U}(a,b)$ for $x$ a random variable with uniform distribution on $\left[ a,b \right]$.}
-
-\subparagraph{Crossings}\label{crossingAlgorithm}
-Given a percolation, it is not clear how to proceed on the task of determining if a crossing exists.
-
-Our approach of the problem is rather unusual.
-
-We simulate a "fire" propagating from one side of the cuboid, and check if it reaches the other side.\footnote{This is inspired by simulations of forest fires from the game "The Pyromaniac Game"\cite{pyromaniacGame}.}
-If it does, then a crossing exists, otherwise, no crossing exists.
-The rules of propagation for the fire (materialized by active cells\footnote{We call a "cell" one of the $D$ dimensional cuboids of side $\nicefrac{1}{n^d}$}) are as follows:
-\begin{enumerate}
-	\item If a cell is active at time $t$, then the non-empty adjacent cells become active at time $t+1$.
-	\item If a cell is active at time $t$, it deactivates and can no longer be active on times $\tilde{t}>t$.
-\end{enumerate}
-At the beginning ($t=0$), we set all the non-empty cells from one side of the unit cuboid as active cells.
-As soon as a cell from the opposite side of the unit cuboid is active, a path has been found (the time $t$ even gives the length of the crossing), and this is the shortest crossing.
-If at some time $t$, no cell is active and no crossing was found before (i.e. the blaze turns off before reaching the other side), then no crossing exist.
-
-Note that this technique tells us if there is a crossing, and what is the minimal length. However, it does not give the crossing path explicitly.
-To find it, one needs to save the set of active cells at each time, and propagate backwards.
-
-This algorithm \ref{algo:crossingFinding} is a pseudocode implementation of this process.
-Julia implementations
-\footnote{2D crossing Julia implementation: \url{https://github.com/pauldubois98/PercolationFractalsStudy/blob/main/crossings2D.jl}}
-\footnote{3D crossing Julia implementation: \url{https://github.com/pauldubois98/PercolationFractalsStudy/blob/main/crossings3D.jl}}
-(used for empirical probability approximation) can be found again on the GitHub repository
-\footnote{See \url{https://github.com/pauldubois98/PercolationFractalsStudy}.}.
-
-Visualisation of this algorithm:
-\begin{itemize}
-	\item In 2D: \url{https://pauldubois98.github.io/PercolationFractalsAlgorithmsDemo/2Dcrossing/index.html}
-	\item In 3D: \url{https://pauldubois98.github.io/PercolationFractalsAlgorithmsDemo/3Dcrossing/index.html}
-\end{itemize}
-
-\begin{algorithm}[!h]
-	\caption{Crossing finding algorithm}\label{algo:crossingFinding}
-	\begin{algorithmic}[1]
-		\State{\textit{Perform one step propagation on $A$, with respect to $P$}}
-		\Procedure{neighbors$^D$}{$A,\, P, \ n,d$}
-			\State $B \gets \textbf{zeros$^D$}(n^d,\dots,n^d)$ \Comment{newly active cells}
-			\For{$1 \leq i_1,\dots,i_D < n^d$}
-				\If{$A[i_1,\dots,i_D]=2$}
-					\State $B[i_1,\dots,i_D] = 2$ \Comment{remain inactive}
-				\EndIf
-				\If{$A[i_1,\dots,i_D]=1$}
-					\State $B[i_1,\dots,i_D] = 2$ \Comment{deactivate cell}
-					\For{$1 \leq j \leq D$}
-						\If{$P[i_1,\dots,i_j-1,\dots,i_D]$ and $A[i_1,\dots,i_j-1,\dots,i_D] = 0$}
-							\State $B[i_1,\dots,i_j-1,\dots,i_D] \gets 1$ \Comment{activate cell}
-						\EndIf
-						\If{$P[i_1,\dots,i_j+1,\dots,i_D]$ and $A[i_1,\dots,i_j+1,\dots,i_D] = 0$}
-							\State $B[i_1,\dots,i_j+1,\dots,i_D] \gets 1$ \Comment{activate cell}
-						\EndIf
-					\EndFor
-				\EndIf
-			\EndFor
-			\State \textbf{return} $B$
-		\EndProcedure
-		\State{\textit{Returns the length of the shortest crossing on percolation $P \sim \text{Perc}^D(n,p,d)$; returns $0$ if none exist.}}
-		\Procedure{crossing$^D$}{$P,\ n,d$}
-			\State $A \gets \textbf{zeros$^D$}(n^d,\dots,n^d)$ \Comment{active cells}
-			\State $A[0,:,\dots,:] \gets P[0,:,\dots,:]$ \Comment{initialize active cells}
-			\State $t \gets 0$
-			\While{\textbf{any}($A=1$) and \textbf{any}($A[n^d,:,\dots,:]=1$)}
-				\State $A \gets \textsc{neighbors}(P,A)$ \Comment{propagate one step}
-				\State $t \gets t+1$
-			\EndWhile
-			\If{\textbf{any}$(A[n^d,:,\dots,:])$}
-				\State \textbf{return} $t$
-			\Else
-				\State \textbf{return} $0$
-			\EndIf
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
-
-By restricting the possible steps (not allowing activation to propagate backwards), this algorithm may be adapted to find semi-straight crossings (the above would give non-straight crossings).
-It can also be used for straight crossings, but in this case, it is faster to sum the percolation array on the first dimension: a straight crossing exists if one of the sums gives $n^d$.
-
-\subsection{Crossings Probability}
-%plots and plots comments
-%jump behaviour
-%explicit formula for straight crossings
-
+\subsubsection{Crossings Probability}
 For a percolation $P \sim \text{Perc}^D(n,p,d)$, we look at the probability that a crossing exist.
 
+\paragraph{Straight Crossings}
+This case is simple enough to derive an explicit formula for both classical and recursive percolations.
+\subparagraph{Classical Percolation}
+Take $P \sim \text{Perc}^D(\infty,p,1)$.
+Then the probability that there is a straight crossing on the first line is $p^n$ (and is the same for the $n^{D-1}$ lines).
+Thus, the probability that there is no crossing on any line is $1-(1-p^n)^{n^{D-1}}$, i.e. 
+$$\mathbb{P}(P \text{ has a straight crossing}) = 1-(1-p^n)^{n^{D-1}} = \mathcal{O}(p^n f(n)) \text{ with } f(n) \text{ a polynomial of } n.$$
+Thus, $\mathbb{P}(P \text{ has a straight crossing}) \to 0$, so it is almost sure that there is no crossing on a classical percolation $P$.
 
+\subparagraph{Recursive Percolation}
+Now take $P \sim \text{Perc}^D(n,p,\infty)$.
 
+Let $Y^k$ be the number of straight crossings after $k$ filtrations, and $E^k = \mathbb{E}(Y^k)$ be the expected number of straight crossings\footnote{We count two crossings as different if they go through different cuboids.}.
+Clearly, $E^0 = 1$, $E^1 = p^nn$, and recursively, $E^k = p^{n^k}nE^{k-1}$.
+So in general, we get $E^k = n^k \prod_{i=1}^{k} p^{n^i}$, and $E^k \to 0$ as $k \to \infty$.
+Now, $\mathbb{E}(Y^k) \to 0$ together with $Y^k \geq 0$ gives $\mathbb{P}(Y^k = 0) \to 1$.
+So eventually, it is almost sure that a recursive percolation will have no straight crossings.
 
-\subsection{Crossings Length}
+%\subparagraph{numrics}
 %plots and plots comments
 %explicit formula for straight crossings
 
-
-\subsection{Crossings Dimension}
+\subsubsection{Crossings Length}
+The length of a straight crossing is always 1.
+However, for non-straight and semi-straight crossing, it is less clear.
+We study this numerically.
 %plots and plots comments
-%explicit formula for straight crossings
 
+%\subsubsection{Crossings Dimension}
+%plots and plots comments
+
+\subsection{Percolation Complement Crossings}
+We turn our interest to crossings on the complement $P^C = \left[ 0,1 \right]^D \setminus P$ for a recursive percolation $P \sim \text{Perc}^D(n,p,\infty)$.
+
+\subsubsection{Crossings Probability}
+Again, we will first be interested in the probability that a crossing exists.
+
+\paragraph{Straight Crossings}
+There is a straight crossing on the complement $P^C$ of the percolation if there exists a point $x \in \left[ 0,1 \right]^{D-1}$ such that $\left[ 0,1 \right] \times \{ x \}$  is in $P^C$, i.e. do not intersect with $P$.
+
+The following result is inspired from \cite[p.309 b.(1)]{Chayes_1988} and \cite[p.215]{Mandelbrot_1982}.
+Suppose $x = (x_2,\dots,x_D)$ with $x_i \neq \nicefrac{j_i}{n^k} \text{ for } j_i \in \llbracket 0,n^k \rrbracket$\footnote{Writing $\llbracket a,b \rrbracket$ for $\Z \cap \left[ 0,n^d \right]$.}.
+Then if $p \leq \nicefrac{1}{n}$ we have that almost surely, $P$ has a complement crossing along $\left[ 0,1 \right] \times \{ x \}$.
+This is in fact equivalent to 
+$$\mathbb{P}\left( \left( P \cap \left[ 0,1 \right] \times \{ x \} \right) = \emptyset \right) = 1 .$$
+\begin{proof}
+	Let $x \neq \left( \frac{j_2}{n^k},\dots,\frac{j_D}{n^k} \right) \text{ for any } j_i \in \llbracket 0,n^k \rrbracket$.
+	The number of intervals of the form $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ still in the percolation at depth $k$ is a branching process in which each interval has $np$ offspring.
+	Thus, the branching process dies out almost surely if $np \leq 1$, i.e. $p \leq \nicefrac{1}{n}$.
+	When the process dies, we have $\left[ 0,1 \right] \times \{ x \} \subseteq P^C$, so there is a crossing in the complement of $P$.
+\end{proof}
+
+%plots
+%comments
+
+\paragraph{Non-Straight Complement Crossings}
+There will be a non-straight crossing in the percolation complement almost surely if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$\footnote{Where $\sqrt[2(D-1)]{n}$ is the $2(D-1)^{th}$ root of $n$.}.
+The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
+\begin{proof}\label{prf:nonStraightComplementCrossigs}
+	This time, take $x = \left( \frac{j_2}{n^k},\dots,\frac{j_D}{n^k} \right) \text{ with } j_i \in \llbracket 1,n^k-1 \rrbracket$, $x_i = \nicefrac{j_i}{n^k}$.
+	Call a segment $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ vacant if any of the $2(D-1)$ cuboids adjacent at the depth $k$ of the percolation have been removed.
+	
+	Let $Y^k$, be the number of occupied segments of the form $\{ x \} \times \left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right]$ at depth $k$.
+	Then $Y^k$, is a branching process in which each the mean number of offspring is $p^{2(D-1)n}$.
+	This branching process is almost surely eventually empty if $np^{2(D-1)} \leq 1$, i.e. if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$.
+	
+	Suppose the branching process dies at depth $k$.
+	Then there are only finitely many points of the form $\left( \nicefrac{j_1}{n^k}, x_2,\dots,x_D \right) \text{ s.t. } j_1 \in \llbracket 1,n^k-1 \rrbracket$.
+	It is almost sure that eventually, all the cuboids touching these points will be removed (since they are kept with a probability $p<1$ after each filtration).
+	Once this is the case, there is a crossing path from $\left( 0, x_2,\dots,x_D \right)$ to $\left( 1, x_2,\dots,x_D \right)$ that zigzags near the segment $\left[ 0,1 \right] \times \{ x \}$ (see fig. \ref{fig:complementCrossing} for illustrations in two and three dimensions).
+\end{proof}
+
+\begin{figure}[!h]
+	\vspace{-0.75cm}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=5.25cm]{complement_crossing3D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{$D = 3$}
+		\label{fig:complementCrossing3D}
+	\end{subfigure}
+	\hspace{0.1\linewidth}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=5.25cm]{complement_crossing2D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{$D = 2$}
+		\label{fig:complementCrossing2D}
+	\end{subfigure}
+	\centering
+	\caption{Eventually, the cuboids touching the orange point(s) will be removed and the red path will remain in full within the percolation complement.}
+	\label{fig:complementCrossing}
+\end{figure}
+
+\subsubsection{Crossings Length}
+%plots and plots comments
+
+%\subsubsection{Crossings Dimension}
+%plots and plots comments
+
+\subsection{Link Between Crossings and Complement Crossings}
+In the case of $D=2$, vertical (respectively horizontal) crossing on $P$ is incompatible with horizontal (respectively vertical) crossing of $P^C$.
+
+Since we proved that if $p \leq \nicefrac{1}{\sqrt{n}}$, then $P^C$ has a crossing with probability one, we get as a consequence that $P$ have a crossing with probability zero (note that the existence probability of a vertical crossing is the same as the one of an horizontal crossing, by symmetry).
+
+\subsection{Connectivity Properties}
+Some properties of percolations are already known by the community.
+We will look at here the ones regarding connectivity of the percolation, which are related to crossings.
+Most results were stated in two dimensions in the literature.
+When possible, we will generalize the results to dimension $D$.
+
+\paragraph{Almost Sure Disconnectedness}
+If $p \leq \nicefrac{1}{\sqrt{n^{D-1}}}$, then the largest connected component in a percolation $P \sim \text{Perc}^D(n,p,\infty)$ is a point (almost surely).
+
+The following proof uses techniques from \cite[p.310 b.(2)]{Chayes_1988}
+\begin{proof}
+	Similarly to last proof (see section \ref{prf:nonStraightComplementCrossigs}), we say that a facet 
+	$$f_{j_1,\dots,j_D}^k = \left\lbrace \frac{j_1}{n^k} \right\rbrace \times \left( \prod_{i=2}^{D} \left[ \frac{j_i-1}{n^k},\frac{j_i}{n^k} \right] \right) $$
+	is vacant is either of the two adjacent cuboids in the $k^{th}$ filtration is.
+	
+	Let $Y^k$ be the number of occupied facets for the form $f_{j_1,\dots,j_D}^k$ after $k$ filtrations.
+	$Y^k$ is a branching process in which each element has $p^2n^{D-1}$ offspring.
+	Now, if $p^2n^{D-1}	\leq 1$ (i.e. $p \leq \nicefrac{1}{\sqrt{n^{D-1}}}$), then the branching process will die out with probability one.
+	Similarly to last proof, if we wait long enough, it is almost sure that there will be a hyper-surface\footnote{Here, hyper-surface and hyperplane are of dimensions $D-1$ in $\R^D$.} in the percolation complement $P^C$ arbitrarily close to the hyperplane $\left\lbrace \frac{j_1}{n^k} \right\rbrace \times \left[ 0,1 \right]^{D-1}$ (see fig. \ref{fig:complementSurface} for examples in two and three dimensions).
+	
+	Finally, repeating the argument for $j_m \in \left[ 1,n^k\right] $, we get that almost surely, there are hyper-surfaces on the percolation complement arbitrarily close to the hyperplanes $\left\lbrace \frac{j_1}{n^k} \right\rbrace \times \left[ 0,1 \right]^{D-1}$.
+	By reflecting the argument, there are some hyper-surfaces arbitrarily close to the hyperplanes $\left[ 0,1 \right]^{m-1} \times \left\lbrace \frac{j_m}{n^k} \right\rbrace \times \left[ 0,1 \right]^{D-m-1}$.
+	Therefore, the largest connected component is a point.
+\end{proof}
+
+\begin{figure}[!h]
+	\vspace{-0.75cm}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=5.25cm]{complement_surface3D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{$D = 3$\\Hyper-surface is a usual 3D surface.}
+		\label{fig:complementSurface3D}
+	\end{subfigure}
+	\hspace{0.1\linewidth}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=5.25cm]{complement_surface2D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{$D = 2$\\Hyper-surface is just a line.}
+		\label{fig:complementSurface2D}
+	\end{subfigure}
+	\centering
+	\caption{Eventually, the cuboids touching the orange line and yellow point(s) will be removed and the red hyper-surface will remain in full within the percolation complement.}
+	\label{fig:complementSurface}
+\end{figure}
+
+\paragraph{Minimal Parameter for Crossings to Appear}
+It is interesting to study when the percolation starts having crossings.
+One defines (notation introduced in \cite{Chayes_1988}) $p_c$ as the minimum value of $p$ such that $P \sim \text{Perc}^D(n,p,\infty)$ has a non zero probability to have a crossing, i.e.
+$$p_c = \inf \left\lbrace p \mid \mathbb{P}(P \text{ has a crossing})>0 \right\rbrace .$$
+
+It is reasonable to conjecture that $p_c<1$ for all $n,D \geq 2$. In fact, this was proved in the case $D=2$ in \cite{Chayes_1988}.
+
+Narrowing down to $D=2$:
+Chayes et al. proved in \cite{Chayes_1988} that almost surely, if $p<p_c$, the largest connected component of $P$ is a point.
+For $p \geq p_c$, the largest connected component is almost surely not a point.
+Moreover, we pave $\R^2$ with a percolation $P \sim \text{Perc}^D(n,p,\infty)$ attached at each point of $\Z^2$ (and calling this $P'$).
+Then, with probability one, $P'$ has a unique unbounded connected component.
+This explains the "jump" behaviour observed in section \ref{blob}.
