@@ -6,7 +6,7 @@ This grows extremely rapidly, and makes theoretical results hard to derive.
 
 Therefore, we choose to study these object further with numerical simulations.
 
-\paragraph{Examples}
+\subsection{Examples}
 To see how complicated finding crossing on percolation becomes when $d$ grows, we look at some examples in two dimensions ($D=2$), with sides $n=2,3,5$ (see fig. \ref{fig:crossingExPerc2}, \ref{fig:crossingExPerc3}, \ref{fig:crossingExPerc5}).
 \begin{figure}[!h]
 	\includegraphics[width=3.1cm]{crossing-ex_perc2step2}
@@ -45,8 +45,8 @@ To see how complicated finding crossing on percolation becomes when $d$ grows, w
 	\label{fig:crossingExPerc5}
 \end{figure}
 
-\paragraph{Algorithms}
-\subparagraph{Percolations}
+\subsection{Algorithms}
+\paragraph{Percolations}
 As (recursive) percolations are generated through a recursive process, it is logical (and elegant) to use a recursive function to generate them computationally.
 We will represent a (finite) percolation $P \sim \text{Perc}^D(n,p,d)$ with a binary $D$-dimensional array of length $n^d$ in each dimensions.
 Note that $D$ is a super-parameter.
@@ -87,7 +87,7 @@ This algorithm is given in pseudocode in algorithm \ref{algo:percolationGenerati
 \addtocounter{footnote}{-1}
 \stepcounter{footnote}\footnotetext{Writing $x \sim \mathcal{U}(a,b)$ for $x$ a random variable with uniform distribution on $\left[ a,b \right]$.}
 
-\subparagraph{Crossings}\label{crossingAlgorithm}
+\paragraph{Crossings}\label{crossingAlgorithm}
 Given a percolation, it is not clear how to proceed on the task of determining if a crossing exists.
 
 Our approach of the problem is rather unusual.
