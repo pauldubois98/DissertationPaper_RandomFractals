@@ -1,10 +1,10 @@
 % !TeX spellcheck = en_GB
 \section{Finding Crossings}
 Percolations are complicated objects.
-Even for finite percolations, say one with side $n$, depth $d$ in $D$ dimensions, here are $2^{\left( n^D \right)^d}$ possibilities.
+Even for finite percolations, say one with side $n$, depth $d$ in $D$ dimensions, there are $2^{\left( n^D \right)^d}$ possibilities.
 This grows extremely rapidly, and makes theoretical results hard to derive.
 
-Therefore, we choose to study these object further with numerical simulations.
+Therefore, we choose to study these objects further with numerical simulations.
 
 \subsection{Examples}
 To see how complicated finding crossing on percolation becomes when $d$ grows, we look at some examples in two dimensions ($D=2$), with sides $n=2,3,5$ (see fig. \ref{fig:crossingExPerc2}, \ref{fig:crossingExPerc3}, \ref{fig:crossingExPerc5}).
@@ -101,7 +101,7 @@ The rules of propagation for the fire (materialized by active cells\footnote{We 
 \end{enumerate}
 At the beginning ($t=0$), we set all the non-empty cells from one side of the unit cuboid as active cells.
 As soon as a cell from the opposite side of the unit cuboid is active, a path has been found (the time $t$ even gives the length of the crossing), and this is the shortest crossing.
-If at some time $t$, no cell is active and no crossing was found before (i.e. the blaze turns off before reaching the other side), then no crossing exist.
+If at some time $t$, no cell is active and no crossing was found before (i.e. the fire turns off before reaching the other side), then no crossing exists.
 
 Note that this technique tells us if there is a crossing, and what is the minimal length. However, it does not give the crossing path explicitly.
 To find it, one needs to save the set of active cells at each time, and propagate backwards.

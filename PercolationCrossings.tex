@@ -28,12 +28,12 @@ If $P$ has a crossing, then a fluid can pass through the material layer.
 However, it will be stuck if there is no crossing.
 The length of the crossing will tell how long it takes for the fluid to traverse the material.
 
-The convention in mathematics is to study horizontal crossings, despite the more clear physical interpretation of vertical ones.
+The convention in mathematics is to study horizontal crossings, despite the clearer physical interpretation of vertical ones.
 Rotating 90$^{\circ}$ transforms vertical crossings to horizontal ones and vice-versa, so studying either is equivalent.
 We choose to stick to the mathematical convention.
 
 \subsection{Types of Crossings}
-There will be three types of crossing considered, according how the path of is allowed to behave.
+There will be three types of crossing considered, according how the path is allowed to behave.
 
 Consider a percolation $P$ on the unit cuboid $\left[ 0,1 \right]^D$ in $D$ dimensions, and let $\gamma: \left[ 0,1 \right] \to \left[ 0,1 \right]^D$ be a crossing of the cuboid, i.e. $\gamma(0) \in \{ 0 \} \times \left[ 0,1 \right]^{D-1}$ and $\gamma(1) \in \{ 1 \} \times \left[ 0,1 \right]^{D-1}$.
 In the case of a finite percolation\footnote{i.e. $P \sim \text{Perc}^D(n,p,d)$ with $n,d < \infty$}, we can view a crossing as a walk on the cuboids of side $\nicefrac{1}{n^d}$.
@@ -87,10 +87,10 @@ When talking about a "crossing" in general, we will assume it may be either stra
 
 
 \subsection{Percolation Crossings}
-First, we are interested in crossing lying on the percolation $P$.
+First, we are interested in crossings lying on the percolation $P$.
 
 \subsubsection{Crossings Probability}
-For a percolation $P \sim \text{Perc}^D(n,p,d)$, we look at the probability that a crossing exist.
+For a percolation $P \sim \text{Perc}^D(n,p,d)$, we look at the probability that a crossing exists.
 
 \paragraph{Straight Crossings}
 This case is simple enough to derive an explicit formula for both classical and recursive percolations.
@@ -116,7 +116,7 @@ So eventually, it is almost sure that a recursive percolation will have no strai
 
 \subsubsection{Crossings Length}
 The length of a straight crossing is always 1.
-However, for non-straight and semi-straight crossing, it is less clear.
+However, for non-straight and semi-straight crossings, it is less clear.
 We study this numerically.
 %plots and plots comments
 
@@ -139,7 +139,7 @@ This is in fact equivalent to
 $$\mathbb{P}\left( \left( P \cap \left[ 0,1 \right] \times \{ x \} \right) = \emptyset \right) = 1 .$$
 \begin{proof}
 	Let $x \neq \left( \frac{j_2}{n^k},\dots,\frac{j_D}{n^k} \right) \text{ for any } j_i \in \llbracket 0,n^k \rrbracket$.
-	The number of intervals of the form $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ still in the percolation at depth $k$ is a branching process in which each interval has $np$ offspring.
+	The number of intervals of the form $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ still in the percolation at depth $k$ is a branching process in which each interval has $np$ offsprings.
 	Thus, the branching process dies out almost surely if $np \leq 1$, i.e. $p \leq \nicefrac{1}{n}$.
 	When the process dies, we have $\left[ 0,1 \right] \times \{ x \} \subseteq P^C$, so there is a crossing in the complement of $P$.
 \end{proof}
@@ -155,13 +155,13 @@ The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 	Call a segment $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ vacant if any of the $2(D-1)$ cuboids adjacent at the depth $k$ of the percolation have been removed.
 	
 	Let $Y^k$, be the number of occupied segments of the form $\{ x \} \times \left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right]$ at depth $k$.
-	Then $Y^k$, is a branching process in which each the mean number of offspring is $p^{2(D-1)n}$.
+	Then $Y^k$, is a branching process in which the mean number of offsprings is $p^{2(D-1)n}$.
 	This branching process is almost surely eventually empty if $np^{2(D-1)} \leq 1$, i.e. if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$.
 	
 	Suppose the branching process dies at depth $k$.
 	Then there are only finitely many points of the form $\left( \nicefrac{j_1}{n^k}, x_2,\dots,x_D \right) \text{ s.t. } j_1 \in \llbracket 1,n^k-1 \rrbracket$.
 	It is almost sure that eventually, all the cuboids touching these points will be removed (since they are kept with a probability $p<1$ after each filtration).
-	Once this is the case, there is a crossing path from $\left( 0, x_2,\dots,x_D \right)$ to $\left( 1, x_2,\dots,x_D \right)$ that zigzags near the segment $\left[ 0,1 \right] \times \{ x \}$ (see fig. \ref{fig:complementCrossing} for illustrations in two and three dimensions).
+	Once this is the case, there is a crossing path from $\left( 0, x_2,\dots,x_D \right)$ to $\left( 1, x_2,\dots,x_D \right)$ that oscillate near the segment $\left[ 0,1 \right] \times \{ x \}$ (see fig. \ref{fig:complementCrossing} for illustrations in two and three dimensions).
 \end{proof}
 
 \begin{figure}[!h]
@@ -195,11 +195,11 @@ The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 \subsection{Link Between Crossings and Complement Crossings}
 In the case of $D=2$, vertical (respectively horizontal) crossing on $P$ is incompatible with horizontal (respectively vertical) crossing of $P^C$.
 
-Since we proved that if $p \leq \nicefrac{1}{\sqrt{n}}$, then $P^C$ has a crossing with probability one, we get as a consequence that $P$ have a crossing with probability zero (note that the existence probability of a vertical crossing is the same as the one of an horizontal crossing, by symmetry).
+Since we proved that if $p \leq \nicefrac{1}{\sqrt{n}}$, then $P^C$ has a crossing with probability one, we get as a consequence that $P$ has a crossing with probability zero (note that the existence probability of a vertical crossing is the same as the one of an horizontal crossing, by symmetry).
 
 \subsection{Connectivity Properties}
 Some properties of percolations are already known by the community.
-We will look at here the ones regarding connectivity of the percolation, which are related to crossings.
+We will look here at the ones regarding connectivity of the percolation, which are related to crossings.
 Most results were stated in two dimensions in the literature.
 When possible, we will generalize the results to dimension $D$.
 
@@ -210,10 +210,10 @@ The following proof uses techniques from \cite[p.310 b.(2)]{Chayes_1988}
 \begin{proof}
 	Similarly to last proof (see section \ref{prf:nonStraightComplementCrossigs}), we say that a facet 
 	$$f_{j_1,\dots,j_D}^k = \left\lbrace \frac{j_1}{n^k} \right\rbrace \times \left( \prod_{i=2}^{D} \left[ \frac{j_i-1}{n^k},\frac{j_i}{n^k} \right] \right) $$
-	is vacant is either of the two adjacent cuboids in the $k^{th}$ filtration is.
+	is vacant if either of the two adjacent cuboids in the $k^{th}$ filtration is.
 	
 	Let $Y^k$ be the number of occupied facets for the form $f_{j_1,\dots,j_D}^k$ after $k$ filtrations.
-	$Y^k$ is a branching process in which each element has $p^2n^{D-1}$ offspring.
+	$Y^k$ is a branching process in which each element has $p^2n^{D-1}$ offsprings.
 	Now, if $p^2n^{D-1}	\leq 1$ (i.e. $p \leq \nicefrac{1}{\sqrt{n^{D-1}}}$), then the branching process will die out with probability one.
 	Similarly to last proof, if we wait long enough, it is almost sure that there will be a hyper-surface\footnote{Here, hyper-surface and hyperplane are of dimensions $D-1$ in $\R^D$.} in the percolation complement $P^C$ arbitrarily close to the hyperplane $\left\lbrace \frac{j_1}{n^k} \right\rbrace \times \left[ 0,1 \right]^{D-1}$ (see fig. \ref{fig:complementSurface} for examples in two and three dimensions).
 	
