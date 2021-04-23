@@ -182,38 +182,64 @@ So $\mathbb{E}(Z_1) = p n^D$, and finally:
 $$\mathbb{E}(\dim_H(P)) = \frac{\ln(p n^D)}{\ln(n)} = D + \log_n(p).$$
 
 \subparagraph{Formally}
-If no randomness is involved in the process, the above argument can be made rigorous:
-Define a contractive map that reflects the self similarities.
-Then use Stefan Banach's contractive mapping fixed point theorem applied to the complete metric space of non-empty compact subsets of $R^n$ with the Hausdorff distance.
+We let the percolation at level $k$ bet the union of cuboids/empty sets $C_{i_1,\dots,i_k}$:
+$$
+P^k = \bigcup_{i_j \in \llbracket 1, \ n^D \rrbracket, 1 \leq j \leq k} C_{i_1,\dots,i_k}
+$$
+where $C_{i_1,\dots,i_k}$ is the $i_k^{th}$ sub-cuboid of $C_{i_1,\dots,i_{k-1}}$ if it has been selected by the random process, and the empty set otherwise.
+When $C_{i_1,\dots,i_k}$ is non-empty, we let 
+\begin{equation*}
+	R_{i_1,\dots,i_k} =
+	\begin{cases}
+		\frac{1}{n} \footnotemark & \text{if } \  C_{i_1,\dots,i_k} \neq \emptyset \\
+		0 & \text{else (i.e. if } \  C_{i_1,\dots,i_k} = \emptyset \text{ )}
+	\end{cases}
+\end{equation*}
+\footnotetext{Note that $\frac{1}{n}$ is the scaling ratio from $C_{i_1,\dots,i_{k-1}}$ to $C_{i_1,\dots,i_k}$ (when not empty).}
+%$$ R_{i_1,\dots,i_k} = \frac{\| C_{i_1,\dots,i_k \|}}{\| C_{i_1,\dots,i_{k}-1 \|}}. $$
+We take $\Omega$ to be our sample space, and assume that a probability measure $\mathbb{P}$ is defined on a suitably large family $\mathcal{F}$ of subsets of $\Omega$, such that the ratios $R_{i_1,\dots,i_k}$ are random variables.
+By the self-similarity of the percolation construction, all the $R_{i_1,\dots,i_k}$ have the same distribution.
 
-We show the fractional dimension is $\alpha = D + \log_n(p)$ directly (this proof follows some ideas from \cite[p. 265-273, section 15]{Falconer_1990}).
+We write $\mathbb{E}\left( X \mid \mathcal{F}_k \right)$ for the conditional expectation of a random variable $X$ given the knowledge of $R_{i_1,\dots,i_j}$ for all sequences $i_1,\dots,i_j$ such that $j \leq k$.
 
-From definition, $P = \bigcap_{d \to \infty} P^k$.
-$P^k$ is composed of cuboids of side $\nicefrac{1}{n^k}$.
-Let $Z^k$ be the number of these cuboids.
-%(i.e. $Z^k = \left| \{ (i_1,\dots,i_D) \mid \epsilon_{i_n//n^{k-j},\dots,i_D//n^{k-j}}^j = 1 \quad \forall j \leq k \} \right|$.
-In expectation, $P^k$ should have $\mathbb{E}(Z^k) = \left( p n^D \right)^k$ cuboids of side $\nicefrac{1}{n^k}$ remaining.
-Taking $P^k$ as a $\beta_k$-cover of $P$, with $\beta_k = \nicefrac{\sqrt{D}}{n^k}$
-\footnote{So that $\beta_k$ is the diameter of a cuboid of side $\nicefrac{1}{n^d}$ in dimension $D$.}, we have
-$$\mathbb{E}\left( H_{\beta_k}^{\alpha}(P) \right) \leq \left( p n^D \right)^k \left( \nicefrac{\sqrt{D}}{n^k} \right)^{D + \log_n(p)} \leq \sqrt{D}^{\alpha}.$$
-Letting $k \to \infty$, we get
-$$\mathbb{E} \left( H^{\alpha}(P) \right) \leq \sqrt{D}^{\alpha} < \infty.$$
+Using this setup and following the same steps as in \cite[p268-271, proof of Th. 15.1]{Falconer_1990}\footnote{Calculating $\mathbb{E}\left( \sum_{R \in P^k} \| R \|^s \right)$ and using $\mu(R) = \lim_{j \to \infty} \left\{ \sum \|\tilde{R}\|^s \mid \tilde{R} \in R_j \text{ and } \tilde{R} \subseteq R \right\}$, with $\| S \|$ the $D$ dimensional Lebesgue measure of the set $S$ (all our set being in $\R^D$).} we have that with probability one\footnote{Remember we are in the case $p>\frac{1}{n^D}$.}, $\dim_H(P) = s$ with $s$ the solution of the expectation equation
+$$\mathbb{E}\left( \sum_{i=1}^{n^D} R_i^s \right) = 1.$$
+that is, 
+$$n^Dp\frac{1}{n^s} = 1 \iff s = D + \log_n(p).$$
+Therefore, the almost sure dimension of $P$ is $\dim_H(P) = D + \log_n(p)$.
+
+This idea is generalised in \cite[p.271, Th. 15.2]{Falconer_1990}.
+
+%%% WRONG PROOF:
+%If no randomness is involved in the process, the above argument can be made rigorous:
+%Define a contractive map that reflects the self similarities.
+%Then use Stefan Banach's contractive mapping fixed point theorem applied to the complete metric space of non-empty compact subsets of $R^n$ with the Hausdorff distance.
+%
+%We show the fractional dimension is $\alpha = D + \log_n(p)$ directly (this proof follows some ideas from \cite[p. 265-273, section 15]{Falconer_1990}).
+%
+%From definition, $P = \bigcap_{d \to \infty} P^k$.
+%$P^k$ is composed of cuboids of side $\nicefrac{1}{n^k}$.
+%Let $Z^k$ be the number of these cuboids.
+%%(i.e. $Z^k = \left| \{ (i_1,\dots,i_D) \mid \epsilon_{i_n//n^{k-j},\dots,i_D//n^{k-j}}^j = 1 \quad \forall j \leq k \} \right|$.
+%In expectation, $P^k$ should have $\mathbb{E}(Z^k) = \left( p n^D \right)^k$ cuboids of side $\nicefrac{1}{n^k}$ remaining.
+%Taking $P^k$ as a $\beta_k$-cover of $P$, with $\beta_k = \nicefrac{\sqrt{D}}{n^k}$
+%\footnote{So that $\beta_k$ is the diameter of a cuboid of side $\nicefrac{1}{n^d}$ in dimension $D$.}, we have
+%$$\mathbb{E}\left( H_{\beta_k}^{\alpha}(P) \right) \leq \left( p n^D \right)^k \left( \nicefrac{\sqrt{D}}{n^k} \right)^{D + \log_n(p)} \leq \sqrt{D}^{\alpha}.$$
+%Letting $k \to \infty$, we get
+%$$\mathbb{E} \left( H^{\alpha}(P) \right) \leq \sqrt{D}^{\alpha} < \infty.$$
 
 %Now, we show that $\mathbb{E} \left( H^{\alpha}(P) \right)  > 0$:
-Let $\mathcal{U} = \{ U_i \mid i \in I \}$ be an open cover of $P$.
-For each $i \in I$, let $k \in \N$ be such that $\beta_{k+1} \leq \diam{U_i} < \beta_k$.
-Then, in general, $U_i$ may only cover fully one cuboid from $P^k$.
-%As generating $P$ is a random process, it may happen that a $U_i$ covers more than one, but this is not the case in general (as it involves a very particular selection configuration), and will not be consistently the case as we take $k \to \infty$.
-Now, if $j \geq k$, then $U_i$ intersects in expectation at most $\left( p n^D \right)^{j-k}$ cuboids of side $\nicefrac{1}{n^j}$ (note $\left( p n^D \right)^{j-k} \leq \frac{\left( pn^D \right)^j}{\sqrt{D}^{\alpha}} \diam{U_i}^{\alpha}$).
-Taking $j$ such that $\beta_{j+1} \leq \diam{U_i} \quad \text{ for } i \in I$, since $\mathcal{U}$ intersects in expectation $\mathbb{E}(Z^j) = \left( p n^D \right)^j$ cuboids of diameter $\nicefrac{1}{n^j}$, we get
-$$\left( p n^D \right)^j \leq \sum_{i \in I} \frac{\left( pn^D \right)^j}{\sqrt{D}^{\alpha}} \diam{U_i}^{\alpha}.$$
-This implies that in expectation, $\sqrt{D}^{\alpha} \leq H^{\alpha}(P)$.
-Thus, $\mathbb{E} \left( H^{\alpha}(P) \right)  \geq \sqrt{D}^{\alpha} > 0$.
-
-Finally, as $0 < H^{\alpha}(P) < \infty$, we get $\mathbb{E}(\dim_H(P)) = \alpha = D + \log_n(p)$.
-
-Letting $W^k = \frac{Z^k}{\left( pn^D \right)^k}$, we have $W^k \to W \text{ a.s. when } k \to \infty$, with $W$ a random variable such that $\mathbb{E}(W) = 1$.
-Use this to get almost sure result?
+%Let $\mathcal{U} = \{ U_i \mid i \in I \}$ be an open cover of $P$.
+%For each $i \in I$, let $k \in \N$ be such that $\beta_{k+1} \leq \diam{U_i} < \beta_k$.
+%Then, in general, $U_i$ may only cover fully one cuboid from $P^k$.
+%%As generating $P$ is a random process, it may happen that a $U_i$ covers more than one, but this is not the case in general (as it involves a very particular selection configuration), and will not be consistently the case as we take $k \to \infty$.
+%Now, if $j \geq k$, then $U_i$ intersects in expectation at most $\left( p n^D \right)^{j-k}$ cuboids of side $\nicefrac{1}{n^j}$ (note $\left( p n^D \right)^{j-k} \leq \frac{\left( pn^D \right)^j}{\sqrt{D}^{\alpha}} \diam{U_i}^{\alpha}$).
+%Taking $j$ such that $\beta_{j+1} \leq \diam{U_i} \quad \text{ for } i \in I$, since $\mathcal{U}$ intersects in expectation $\mathbb{E}(Z^j) = \left( p n^D \right)^j$ cuboids of diameter $\nicefrac{1}{n^j}$, we get
+%$$\left( p n^D \right)^j \leq \sum_{i \in I} \frac{\left( pn^D \right)^j}{\sqrt{D}^{\alpha}} \diam{U_i}^{\alpha}.$$
+%This implies that in expectation, $\sqrt{D}^{\alpha} \leq H^{\alpha}(P)$.
+%Thus, $\mathbb{E} \left( H^{\alpha}(P) \right)  \geq \sqrt{D}^{\alpha} > 0$.
+%
+%Finally, as $0 < H^{\alpha}(P) < \infty$, we get $\mathbb{E}(\dim_H(P)) = \alpha = D + \log_n(p)$.
 
 \subparagraph{Dimension Plots}
 In starting from two dimensions ($D = 2$), the recursive percolations dimension behave as in fig. \ref{fig:dimension2D}.
