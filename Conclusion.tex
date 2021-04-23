@@ -1,0 +1,23 @@
+% !TeX spellcheck = en_GB
+\section{Conclusion}
+%\subsection{Summary}
+We have studied percolation fractals in the most general form (starting from a $D$ dimensional cuboid).
+Classical percolation almost surely have the same dimension as the initial set\footnotemark, while recursive percolation have almost sure dimension in $\left[ 0, D \right)$
+\addtocounter{footnote}{-1}
+\footnotemark
+\footnotetext{For $p \in \left( 0,1 \right)$.}.
+We have proved that recursive percolations reach a density of zero eventually, almost surely, and is totally disconnected when $p$ is small enough\footnote{When $p \leq \nicefrac{1}{\sqrt{n^{D-1}}}$.}.
+
+We also studied the probability of the existence of a crossing. The latter having physical motivation\footnote{Being that if the percolation represents a porous material, the presence of a crossing tell if it is fluid-proof.})
+The complexity of this problem pushed us to make numerical simulations.
+We reduced our study to cases in two and three dimensions, and developed efficient algorithms to get the most reliable results (by increasing the number of experiments)\footnote{All results are aggregated at \url{https://pauldubois98.github.io/PercolationFractalsStudy/}.}.
+
+%\subsection{Future Work}
+In the future, it could be interesting to examine the dimensionality of the crossing path.
+We anticipate the dimension will be one when the path is nearly straight, but this may increase for more irregular path.
+The dimension of the path could be a good measure of the physical difficulty for a fluid to traverse the material.
+This, together with the viscosity of the fluid could be interpreted as the strength of fluid flow traversing the medium.
+
+It would also be interesting to see the effect of removing other shapes from the initial cuboid.
+For example, many porous materials have round (or spherical) holes. It would therefore make sense to study percolations where the set removed is a $D$ dimensional ball, rather than a $D$ dimensional cuboid, as we have done so far.
+This would make the model more complicated, but also more accurate in terms of physical interpretation.
