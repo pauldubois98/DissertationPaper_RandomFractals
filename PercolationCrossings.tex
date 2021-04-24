@@ -110,26 +110,42 @@ So in general, we get $E^k = n^k \prod_{i=1}^{k} p^{n^i}$, and $E^k \to 0$ as $k
 Now, $\mathbb{E}(Y^k) \to 0$ together with $Y^k \geq 0$ gives $\mathbb{P}(Y^k = 0) \to 1$.
 So eventually, it is almost sure that a recursive percolation will have no straight crossings.
 
-%\subparagraph{numrics}
-%plots and plots comments
-%explicit formula for straight crossings
+\paragraph{Numerics}
+The study of semi-straight and non-straight crossings has to be done numerically.
+All results can be found (in an interactive way) at \url{https://pauldubois98.github.io/PercolationFractalsStudy/crossings.html}.
+
+\subparagraph{$D=2$}
+As $d$ increases, it seems like the phase transition\footnote{We call phase transition the interval $\{ p \mid \mathbb{P}(\text{exists crossings}) \in (0,1) \}$.} shrinks.
+One may conjecture that eventually, for a recursive percolation, the probability that there exists a crossing is either $0$ or $1$, and that there is a critical value $p_n$ that splits the two regimes.
+For semi-straight crossings, transition occurs for a higher value of $p$\footnotemark.
+
+As $n$ increases, we observe the same behaviour (transition phase shrinking), near $p=0.55$ for non-straight crossings and near $p=0.6$ for semi-straight crossings\addtocounter{footnote}{-1}\footnotemark.
+\footnotetext{This makes sense as a semi-straight crossing is also a non-straight crossing.}
+
+\subparagraph{$D=3$}
+In this case, we observe very similar behaviours, with transitions shifted to smaller values of $p$.
+This makes sense as in 3D, there are more ways to go around a removed cuboid than in 2D.
 
 \subsubsection{Crossings Length}
 The length of a straight crossing is always 1.
 However, for non-straight and semi-straight crossings, it is less clear.
 We study this numerically.
-%plots and plots comments
+
+As either $d$ or $n$ increases, the average  length of crossings (when existing) increases.
+One may conjecture that eventually, the crossing path are fractals with dimension greater than one (this would agree with a crossing length diverging to infinity).
+
+Semi-straight crossings are on average shorter than non-straight ones (but are less likely to occur).
+The behaviours are similar for $D=2$ and $D=3$.
 
 %\subsubsection{Crossings Dimension}
-%plots and plots comments
 
 \subsection{Percolation Complement Crossings}
 We turn our interest to crossings on the complement $P^C = \left[ 0,1 \right]^D \setminus P$ for a recursive percolation $P \sim \text{Perc}^D(n,p,\infty)$.
 
-\subsubsection{Crossings Probability}
+\subsubsection{Complement Crossings Probability}
 Again, we will first be interested in the probability that a crossing exists.
 
-\paragraph{Straight Crossings}
+\paragraph{Straight Complement Crossings}
 There is a straight crossing on the complement $P^C$ of the percolation if there exists a point $x \in \left[ 0,1 \right]^{D-1}$ such that $\left[ 0,1 \right] \times \{ x \}$  is in $P^C$, i.e. do not intersect with $P$.
 
 The following result is inspired from \cite[p.309 b.(1)]{Chayes_1988} and \cite[p.215]{Mandelbrot_1982}.
@@ -143,9 +159,6 @@ $$\mathbb{P}\left( \left( P \cap \left[ 0,1 \right] \times \{ x \} \right) = \em
 	Thus, the branching process dies out almost surely if $np \leq 1$, i.e. $p \leq \nicefrac{1}{n}$.
 	When the process dies, we have $\left[ 0,1 \right] \times \{ x \} \subseteq P^C$, so there is a crossing in the complement of $P$.
 \end{proof}
-
-%plots
-%comments
 
 \paragraph{Non-Straight Complement Crossings}
 There will be a non-straight crossing in the percolation complement almost surely if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$\footnote{Where $\sqrt[2(D-1)]{n}$ is the $2(D-1)^{th}$ root of $n$.}.
@@ -186,11 +199,15 @@ The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 	\label{fig:complementCrossing}
 \end{figure}
 
-\subsubsection{Crossings Length}
-%plots and plots comments
+\paragraph{Numerics}
+The crossing probabilities on percolation complement behave similarly as the ones on the percolation: there is a phase transition (this time, from 1 to 0 instead of from 0 to 1 as $p$ increases).
+Moreover, the transition shrinks and we can conjecture that eventually, there will only be two regimes.
+A further study of this behaviour is left to future work.
 
-%\subsubsection{Crossings Dimension}
-%plots and plots comments
+\subsubsection{Crossings Length}
+For classical percolations ($d=1$, $n \to \infty$), the simulations show very similar result to the ones of crossings on the percolation (but symmetric about the axis $p=0.5$).
+However, for recursive percolations, the behaviour is very different: crossings length do not increase much, even when $p$ is large\footnote{So the percolation complement is small set.}.
+The further study of this behaviour is left to future work.
 
 \subsection{Link Between Crossings and Complement Crossings}
 In the case of $D=2$, vertical (respectively horizontal) crossing on $P$ is incompatible with horizontal (respectively vertical) crossing of $P^C$.
