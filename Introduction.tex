@@ -3,7 +3,7 @@
 \section{Introduction}
 
 Fractals have fascinated mathematicians for over a century.
-However, in this paper, we intend to study the properties of fractals in order to use this theory for physics model of porous materials.
+In this paper, we intend to study the properties of fractals in order to use this theory for physics model of porous materials.
 
 We will first recall some background theory on set dimensionality and fractals.
 We use this theory as a tool to study basic properties of percolation fractals.
@@ -12,7 +12,7 @@ During this process, we randomly remove some parts of the initial set.
 Percolation fractals are of two main types: classical ones, where only one filtration is performed, and recursive ones, where filtrations are performed recursively on the remaining subset.
 
 Our goal will be to have a better understanding of the structure arising from these processes.
-Keeping in mind the physical interpretation, we will be particularly interested in how particles may travel inside this medium.
+Keeping in mind the physical interpretation, we will be particularly interested in how a fluid may travel inside this medium.
 
 First, we will turn our interest to the size of the central connected structure (the "blob") of the percolation.
 Later, we will be more particularly interested in the existence of crossings path of the medium.
@@ -22,6 +22,7 @@ Some papers were already published, and some theory is already known.
 However, the vast majority of the literature concentrates on the case of a percolation initialized by a square in two dimensions.
 Given the three dimensionality of our world, it is interesting to extend the study (at least) to this third dimension.
 We will extend some results known in two dimensions to any dimension.
+To the best of our knowledge, this has not been published before.
 
 Finally, despite the elegance of the theoretical results, they only treat extreme cases (i.e. probability parameter very low or very high).
 To get an understanding of the behaviour for more moderate parametrisations, we will use numerical experiments.
@@ -29,9 +30,10 @@ In order to have the best accuracy possible, we developed a neat and efficient a
 To avoid mixing mathematics with too deep numerical considerations, the algorithmic explanation part has been moved to the appendix (see \ref{algorithms}).
 
 \begin{figure}[!h]
-	\vspace{2cm}
+	\vspace{1cm}
 	\includegraphics[height=8cm]{intro_picture}
 	\centering
-	\caption{Illustration of a chicken crossing a percolation (in reference to the title)}
+	\caption{Illustration of a chicken crossing a percolation (in reference to the title).\\
+	If the chicken can find a path to cross the percolation, then a fluid may traverse the porous material modelled by the percolation.}
 	\label{fig:introRecursivePercolation}
 \end{figure}

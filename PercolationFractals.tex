@@ -24,6 +24,7 @@ Then, each square will be selected to stay or will be thrown away, according to 
 $\epsilon_{i,j} \sim \mathcal{B}(p)$.
 Finally, the classical percolation $P$ is
 $$P = \bigcup_{i,j \text{ s.t. } \epsilon_{i,j}=1} B_{i,j}.$$
+%$$P = \bigcup_{\substack{i,j\\ \epsilon_{i,j}=1}} B_{i,j}.$$
 
 We will adopt the notation $P \sim \text{Perc}(n,p,1)$ for such a setup (a classical percolation of side $n$ and probability parameter $p$).
 
@@ -45,6 +46,7 @@ $$B_{i,j}^k = \left[ \frac{i-1}{n^k},\frac{i}{n^k} \right] \times \left[ \frac{j
 Again, associate to each square a Bernoulli random variable with parameter $p$, $\epsilon_{i,j}^k \sim \mathcal{B}(p)$.
 Finally, the recursive percolation $P^d$ is defined recursively by:
 $$P^k = P^{k-1} \bigcap \left( \bigcup_{i,j \text{ s.t. } \epsilon_{i,j}^k = 1} B_{i,j}^k \right) \quad \forall \, 1 \leq k \leq d$$
+%$$P^k = P^{k-1} \bigcap \left( \bigcup_{\substack{i,j\\ \epsilon_{i,j}^k=1}} B_{i,j}^k \right) \quad \forall \, 1 \leq k \leq d$$
 and $$P^0 = \left[ 0,1 \right]^2.$$
 
 We will adopt the notation $P^d \sim \text{Perc}(n,p,d)$ for such a setup (a recursive percolation of depth $d$, side $n$ and probability parameter $p$).
@@ -71,6 +73,8 @@ $$B_{i_1,\dots,i_D} = \left[ \frac{i_1-1}{n}, \frac{i_1}{n} \right] \times \dots
 Then, attach to each cuboid a Bernoulli random variable $\epsilon_{i_1,\dots,i_D} \sim \mathcal{B}(p)$.
 The classical percolation $P$ in $D$ dimensions is
 $$P = \bigcup_{i_1,\dots,i_D \text{ s.t. } \epsilon_{i_1,\dots,i_D}=1} B_{i_1,\dots,i_D}.$$
+%$$P = \bigcup_{\substack{i_1,\dots,i_D \\ \epsilon_{i_1,\dots,i_D}=1}} B_{i_1,\dots,i_D}.$$
+
 %The number of remaining squares $Z$ is $Z = | \{ (i_1,\dots,i_D) \mid \epsilon_{i_1,\dots,i_D} = 1 \} |$.
 We will denote this setup by $P \sim \text{Perc}^D(n,p,1)$ (a classical percolation of side $n$ and probability parameter $p$ in $D$ dimensions), and write $P \sim \text{Perc}^D(\infty,p,1)$ for $P = \lim_{n \to \infty} P^n$, $P^n \sim \text{Perc}^D(n,p,1)$.
 
@@ -79,7 +83,9 @@ For each $1 \leq k \leq d$, split the unit cuboid into $\left( n^k \right)^D$ cu
 $$B_{i_1,\dots,i_D}^k = \left[ \frac{i_1-1}{n^k},\frac{i_1}{n^k} \right] \times \dots \times \left[ \frac{i_D-1}{n^k},\frac{i_D}{n^k} \right].$$
 Again, attach to each cuboid a Bernoulli random variable $\epsilon_{i_1,\dots,i_D}^k \sim \mathcal{B}(p)$.
 Finally, the recursive percolation $P^d$ is defined by:
-$$P^k = P^{k-1} \bigcap \left( \bigcup_{i_1,\dots,i_D \text{ s.t. } \epsilon_{i_1,\dots,i_D}^k = 1} B_{i_1,\dots,i_D}^k \right) \quad \forall 1 \leq k \leq d$$
+$$P^k = P^{k-1} \bigcap \left( \bigcup_{i_1,\dots,i_D \text{ s.t. } \epsilon_{i_1,\dots,i_D}^k = 1} B_{i_1,\dots,i_D}^k \right) \quad \forall \, 1 \leq k \leq d$$
+%$$P^k = P^{k-1} \bigcap \left( \bigcup_{\substack{i_1,\dots,i_D \\ \epsilon_{i_1,\dots,i_D}^k=1}} B_{i_1,\dots,i_D}^k \right) \quad \forall 1 \leq k \leq d$$
+
 and $$P^0 = \left[ 0,1 \right]^2.$$
 
 We will denote this setup by $P^d \sim \text{Perc}^D(n,p,d)$ (a recursive percolation of depth $d$, side $n$ and probability parameter $p$ in $D$ dimensions).

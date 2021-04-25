@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_GB
-\section{Finding Crossings}
+\section{Finding Crossings}\label{finding_crossings}
 Percolations are complicated objects.
 Even for finite percolations, say one with side $n$, depth $d$ in $D$ dimensions, there are $2^{\left( n^D \right)^d}$ possibilities.
 This grows extremely rapidly, and makes theoretical results hard to derive.
@@ -46,6 +46,11 @@ To see how complicated finding crossing on percolation becomes when $d$ grows, w
 \end{figure}
 
 \subsection{Algorithms}\label{algorithms}
+To produce our numerical results, there are three steps: 
+First, generate a percolation randomly.
+Then, find a crossing on the percolation if it exists (or find the central blob, if this is the object of the study).
+Finally, repeat the experiment enough times (by the law of large number\footnote{See \url{https://en.wikipedia.org/wiki/Law_of_large_numbers}.}, the empirical estimation will tend to the theoretical value as the number of experiments increases).
+
 \paragraph{Percolations}
 As (recursive) percolations are generated through a recursive process, it is logical (and elegant) to use a recursive function to generate them computationally.
 We will represent a (finite) percolation $P \sim \text{Perc}^D(n,p,d)$ with a binary $D$-dimensional array of length $n^d$ in each dimensions.

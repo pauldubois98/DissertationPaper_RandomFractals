@@ -22,7 +22,7 @@
 \end{wrapfigure}
 \section{Percolation Crossings}
 We are now interested in crossings from one side of the unit cuboid to the other side.
-There is some physical motivation (introduced first in \cite{broadbent_hammersley_1957}) for such questions:
+There is some physical motivation (introduced first in \cite{broadbent_hammersley_1957}) for this question:
 Suppose the percolation was a mathematical model for a physical material.
 If $P$ has a crossing, then a fluid can pass through the material layer.
 However, it will be stuck if there is no crossing.
@@ -95,11 +95,13 @@ For a percolation $P \sim \text{Perc}^D(n,p,d)$, we look at the probability that
 \paragraph{Straight Crossings}
 This case is simple enough to derive an explicit formula for both classical and recursive percolations.
 \subparagraph{Classical Percolation}
-Take $P \sim \text{Perc}^D(\infty,p,1)$.
-Then the probability that there is a straight crossing on the first line is $p^n$ (and is the same for the $n^{D-1}$ lines).
+If $P \sim \text{Perc}^2(n,p,1)$.
+Then the probability that there is a straight crossing on the first line\footnote{i.e. $\left[ 0,1 \right] \times \{ 0 \}$ is a crossing of the percolation.} is $p^n$ (and is the same for all of the $n$ lines).
+Take $P \sim \text{Perc}^D(n,p,1)$.
+Then the probability that there is a straight crossing on the first line\footnote{i.e. $\left[ 0,1 \right] \times \{ 0,\dots,0 \}$ is a crossing of the percolation.} is $p^n$ (and is the same for the $n^{D-1}$ lines).
 Thus, the probability that there is no crossing on any line is $1-(1-p^n)^{n^{D-1}}$, i.e. 
-$$\mathbb{P}(P \text{ has a straight crossing}) = 1-(1-p^n)^{n^{D-1}} = \mathcal{O}(p^n f(n)) \text{ with } f(n) \text{ a polynomial of } n.$$
-Thus, $\mathbb{P}(P \text{ has a straight crossing}) \to 0$, so it is almost sure that there is no crossing on a classical percolation $P$.
+$$\mathbb{P}(P \text{ has a straight crossing}) = 1-(1-p^n)^{n^{D-1}} = 0 + \mathcal{O}(p^n f(n)) \text{ with } f(n) \text{ a polynomial of } n.$$
+Thus, if $P \sim \text{Perc}^D(\infty,p,1)$, then $\mathbb{P}(P \text{ has a straight crossing}) \to 0$, so it is almost sure that there is no crossing on a classical percolation $P$.
 
 \subparagraph{Recursive Percolation}
 Now take $P \sim \text{Perc}^D(n,p,\infty)$.
@@ -112,7 +114,8 @@ So eventually, it is almost sure that a recursive percolation will have no strai
 
 \paragraph{Numerics}
 The study of semi-straight and non-straight crossings has to be done numerically.
-All results can be found (in an interactive way) at \url{https://pauldubois98.github.io/PercolationFractalsStudy/crossings.html}.
+All results can be found (in an interactive form) at \url{https://pauldubois98.github.io/PercolationFractalsStudy/crossings.html}.
+We discuss the method used to produce the following plots in the appendix, see \ref{finding_crossings}.
 
 \subparagraph{$D=2$}
 As $d$ increases, it seems like the phase transition\footnote{We call phase transition the interval $\{ p \mid \mathbb{P}(\text{exists crossings}) \in (0,1) \}$.} shrinks.
@@ -121,6 +124,7 @@ One may conjecture that eventually, for a recursive percolation, the probability
 For semi-straight crossings, transition occurs for a higher value of $p$\footnotemark.
 However, the difference between non-straight and semi-straight crossing probabilities is very small.
 For straight crossings, there is a significant difference.
+Remark as well that the probability of finding a straight crossing goes to zero for all $p<1$ when either $d$ or $n$ increase (the agrees with the above mathematical argument).
 
 As $n$ increases, we observe the same behaviour (transition phase shrinking), near $p=0.55$ for non-straight crossings and near $p=0.6$ for semi-straight crossings\addtocounter{footnote}{-1}\footnotemark.
 \footnotetext{This makes sense as a semi-straight crossing is also a non-straight crossing.}
@@ -181,6 +185,7 @@ As $n$ increases, we observe the same behaviour (transition phase shrinking), ne
 \subparagraph{$D=3$}
 In this case, we observe very similar behaviours, with transitions shifted to smaller values of $p$.
 This makes sense as in 3D, there are more ways to go around a removed cuboid than in 2D (see fig. \ref{fig:crossingProbabilities3D}).
+With the same mount of cuboids removed, it is therefore more likely find a crossing path when $D=3$ than when $D=2$.
 
 \begin{figure}[!h]
 	\begin{subfigure}{0.45\linewidth}
@@ -276,7 +281,7 @@ $$\mathbb{P}\left( \left( P \cap \left[ 0,1 \right] \times \{ x \} \right) = \em
 \end{proof}
 
 \paragraph{Non-Straight Complement Crossings}
-There will be a non-straight crossing in the percolation complement almost surely if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$\footnote{Where $\sqrt[2(D-1)]{n}$ is the $2(D-1)^{th}$ root of $n$.}.
+There will be a non-straight crossing in the percolation complement almost surely if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$\footnote{Where $\sqrt[2(D-1)]{n} = n^{\frac{1}{2(D-1)}}$ is the $2(D-1)^{th}$ root of $n$.}.
 The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 \begin{proof}\label{prf:nonStraightComplementCrossigs}
 	This time, take $x = \left( \frac{j_2}{n^k},\dots,\frac{j_D}{n^k} \right) \text{ with } j_i \in \llbracket 1,n^k-1 \rrbracket$, $x_i = \nicefrac{j_i}{n^k}$.
