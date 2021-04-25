@@ -117,14 +117,88 @@ All results can be found (in an interactive way) at \url{https://pauldubois98.gi
 \subparagraph{$D=2$}
 As $d$ increases, it seems like the phase transition\footnote{We call phase transition the interval $\{ p \mid \mathbb{P}(\text{exists crossings}) \in (0,1) \}$.} shrinks.
 One may conjecture that eventually, for a recursive percolation, the probability that there exists a crossing is either $0$ or $1$, and that there is a critical value $p_n$ that splits the two regimes.
+
 For semi-straight crossings, transition occurs for a higher value of $p$\footnotemark.
+However, the difference between non-straight and semi-straight crossing probabilities is very small.
+For straight crossings, there is a significant difference.
 
 As $n$ increases, we observe the same behaviour (transition phase shrinking), near $p=0.55$ for non-straight crossings and near $p=0.6$ for semi-straight crossings\addtocounter{footnote}{-1}\footnotemark.
 \footnotetext{This makes sense as a semi-straight crossing is also a non-straight crossing.}
 
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}{\textwidth}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{straight_crossing_proba_2D_ter}
+			\centering
+			\caption{Classical Percolation}
+			\label{fig:crossingProbabilityClassical}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{straight_crossing_proba_2D}
+			\centering
+			\caption{Recursive Percolation}
+			\label{fig:crossingProbabilityRecursive}
+		\end{subfigure}
+	\end{subfigure}
+	Straight
+	
+	\vspace{0.5cm}
+	\begin{subfigure}{\textwidth}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{semi_straight_crossing_proba_2D_ter}
+			\centering
+			\caption{Classical Percolation}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{semi_straight_crossing_proba_2D}
+			\centering
+			\caption{Recursive Percolation}
+		\end{subfigure}
+	\end{subfigure}
+	Semi-straight
+	
+	\vspace{0.5cm}
+	\begin{subfigure}{\textwidth}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{crossing_proba_2D_ter}
+			\centering
+			\caption{Classical Percolation}
+		\end{subfigure}
+		\begin{subfigure}{.49\textwidth}
+			\includegraphics[width=8cm]{crossing_proba_2D}
+			\centering
+			\caption{Recursive Percolation}
+		\end{subfigure}
+	\end{subfigure}
+	Non-straight
+	
+	\vspace{0.25cm}
+	\caption{Crossing Probabilities, $D=2$}
+	\label{fig:crossingProbabilities2D}
+\end{figure}
+
 \subparagraph{$D=3$}
 In this case, we observe very similar behaviours, with transitions shifted to smaller values of $p$.
-This makes sense as in 3D, there are more ways to go around a removed cuboid than in 2D.
+This makes sense as in 3D, there are more ways to go around a removed cuboid than in 2D (see fig. \ref{fig:crossingProbabilities3D}).
+
+\begin{figure}[!h]
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_proba_3D_bis}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Classical Percolation}
+	\end{subfigure}
+	\hspace{0.04\linewidth}
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_proba_3D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Recursive Percolation}
+	\end{subfigure}
+	\caption{Crossing Probabilities, $D=3$}
+	\label{fig:crossingProbabilities3D}
+\end{figure}
 
 \subsubsection{Crossings Length}
 The length of a straight crossing is always 1.
@@ -135,7 +209,41 @@ As either $d$ or $n$ increases, the average  length of crossings (when existing)
 One may conjecture that eventually, the crossing path are fractals with dimension greater than one (this would agree with a crossing length diverging to infinity).
 
 Semi-straight crossings are on average shorter than non-straight ones (but are less likely to occur).
-The behaviours are similar for $D=2$ and $D=3$.
+The average crossing length behaviours are similar for $D=2$ and $D=3$ (see fig. \ref{fig:crossingLengths}).
+
+\begin{figure}[!h]
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_length_2D_ter}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Classical Percolation, $D=2$}
+	\end{subfigure}
+	\hspace{0.04\linewidth}
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_length_2D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Recursive Percolation, $D=2$}
+	\end{subfigure}
+
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_length_3D_bis}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Classical Percolation, $D=3$}
+	\end{subfigure}
+	\hspace{0.04\linewidth}
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[width=8cm]{crossing_length_3D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Recursive Percolation, $D=3$}
+	\end{subfigure}
+
+	\caption{Crossings average lengths on percolation (non-straight case).\\
+	The oscillations for $p$ small come from the fact that for small values of $p$, very few crossings are found (even out of 50000 simulations). Therefore, the average is taken over fewer values, and we end-up with more noise.}
+	\label{fig:crossingLengths}
+\end{figure}
 
 %\subsubsection{Crossings Dimension}
 
@@ -210,11 +318,48 @@ The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 The crossing probabilities on percolation complement behave similarly as the ones on the percolation: there is a phase transition (this time, from 1 to 0 instead of from 0 to 1 as $p$ increases).
 Moreover, the transition shrinks and we can conjecture that eventually, there will only be two regimes.
 A further study of this behaviour is left to future work.
+Again, all results (we will only show a subset here) are available interactively at \url{https://pauldubois98.github.io/PercolationFractalsStudy/complement_crossings.html}.
+
+\begin{figure}[!h]
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=8cm]{complement_crossing_proba_2D_ter}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Classical Percolation}
+	\end{subfigure}
+	\hspace{0.1 \linewidth}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=8cm]{complement_crossing_proba_2D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Recursive Percolation}
+	\end{subfigure}
+	\caption{Crossing probability on percolation complement (non-straight case).}
+	\label{fig:crossingComplementProbabilities}
+\end{figure}
 
 \subsubsection{Crossings Length}
 For classical percolations ($d=1$, $n \to \infty$), the simulations show very similar result to the ones of crossings on the percolation (but symmetric about the axis $p=0.5$).
 However, for recursive percolations, the behaviour is very different: crossings length do not increase much, even when $p$ is large\footnote{So the percolation complement is small set.}.
 The further study of this behaviour is left to future work.
+
+\begin{figure}[!h]
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=8cm]{complement_crossing_length_2D_ter}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Classical Percolation}
+	\end{subfigure}
+	\hspace{0.1 \linewidth}
+	\begin{subfigure}{0.44\linewidth}
+		\includegraphics[width=8cm]{complement_crossing_length_2D}
+		\centering
+		\captionsetup{justification=centering}
+		\caption{Recursive Percolation}
+	\end{subfigure}
+	\caption{Crossings average length on percolation complement (non-straight case).}
+	\label{fig:crossingComplementLengths}
+\end{figure}
 
 \subsection{Link Between Crossings and Complement Crossings}
 In the case of $D=2$, vertical (respectively horizontal) crossing on $P$ is incompatible with horizontal (respectively vertical) crossing of $P^C$.
