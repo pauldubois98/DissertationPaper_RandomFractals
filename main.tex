@@ -25,6 +25,7 @@
 %tables
 \usepackage{multirow}
 \usepackage{longtable}
+\usepackage{tabularx}
 %for math
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -32,36 +33,38 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage{mathdots}
 \usepackage{nicefrac}
+\usepackage{stmaryrd}
 \usepackage{makecell}
 %for images
 \usepackage{graphicx}
-\graphicspath{ {./img/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\graphicspath{{./img/}{./plots/}{./crossings/}}
 %for plots
 \usepackage{tikz}
-\usetikzlibrary{mindmap}
 \usepackage{adjustbox}
 %links
-\usepackage[hyphens]{url}
+%\usepackage[hyphens]{url}
 \usepackage{hyperref}
 %\hypersetup{colorlinks=true}
 %citations
-\usepackage[square]{natbib}
 \bibliographystyle{unsrtnat}
 %code
 \usepackage{minted}
 %\usepackage[cache=false]{minted}
 %\usepackage{listings}
+\usepackage{algorithm}
 \usepackage{algpseudocode}
 \definecolor{CodeColor}{RGB}{100, 100, 100}
-%%files tree architecture
-%\usepackage{dirtree}
-
 
 
 %environments
 \newtheorem*{notation}{Notation}
 \newtheorem{definition}{Definition}[section]
+\newtheorem*{claim}{Claim}
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{property}{Property}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -76,7 +79,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\D}{\mathbb{D}}
 \newcommand{\R}{\mathbb{R}}
-%\newcommand{\C}{\mathbb{C}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\halfplane}{\mathbb{H}}
 %\newcommand{\dim}[1]{\text{dim}(#1)}
@@ -96,31 +99,58 @@
 \newcommand{\Aut}[1]{\text{Aut}(#1)}
 \newcommand{\legendre}[2]{\left( \frac{#1}{#2} \right)}
 \newcommand{\degree}[1]{\partial #1}
+\newcommand{\diam}[1]{\text{diam}(#1)}
 
 
 
 
 \begin{document}
 	\include{title_page}
+	\footnotetext{Title inspired of the pseudo-joke "Why did the chicken cross the road?" (see \url{https://en.wikipedia.org/wiki/Why_did_the_chicken_cross_the_road\%3F}).}
 	\begin{center}
-		\LARGE Random Fractals
+		\LARGE Percolation Fractals
 	\end{center}
 	\vspace{0.5cm}
 	\begin{abstract}
-		[blah]
+		Percolations are geometric figures obtained after repetitively removing some material from an initial set, in our case, a cuboid.
+		Studying their properties provide a better understanding of some physical models for materials: some porous materials are modelled using percolations.
+		In this paper, we study mathematical properties of percolations starting with cuboids of any dimensions, and make numerical experiments on the two and three dimensional cases.
+		
+		We will introduce the concept of dimensionality for sets, and the concept of fractal.
+		We will then narrow down our interest to a special type of fractals: the one obtained by percolation.
+		Two competing models will be studied: the classical percolation, and the recursive scheme.
+		
+		After discussing some basic properties (density, dimension, size of the central "blob"), we will look at crossings on percolations.
+		This is the main purpose of this paper, we will derive some mathematical result in extreme cases, and use some innovative algorithms to obtain relevant numerics.
+		Finally, we will extend techniques used in previous literature for percolations in two dimensions to acquire knowledge in more general settings. 
 	\end{abstract}
 	
-
 	\vspace{2.5cm}
 	\begin{center}
 		\textbf{Acknowledgment}
 	\end{center}
-	\vspace{1cm}
-	
-	First of all, I would like to thank my supervisor, Ben Hambly, for guiding and supporting through this project.
-		
-	I would like to thank the whole administration team of Oxford, for all the help they provided despite the pandemic context.	
-	
+	{
+		\small
+		\hspace{1cm}
+		First of all, I would like to thank my supervisor, Ben Hambly, for guiding and supporting through this project.
+		I would like to thank the whole administrative team of Oxford, for all the help they provided despite the pandemic context.
+	}
+
+	\vspace{2.5cm}
+	\begin{center}
+		\textbf{Word Count}
+	\end{center}
+	\begin{center}
+		%\textit{Word count by Overleaf}
+		\begin{tabular}{r l}
+			Total Words: & 7432 \\
+			Headers: & 87 \\
+			Math Inline: & 618 \\
+			Math Display: & 29 \\
+			Figures: & 38 \\
+			Algorithms: & 2 \\
+		\end{tabular}
+	\end{center}
 	
 	\newpage
 	
@@ -128,14 +158,16 @@
 	
 	\include{Introduction}
 	\include{BackgroundTheory}
-	\include{FractalPercolation}
-	\include{Numerics}
+	\include{PercolationFractals}
+	\include{PercolationCrossings}
+	%\include{PercolationProjections}
+	\include{Conclusion}
 	
+	\bibliography{references}
 	
 	\appendix
 	\include{title_appendix}
-	\include{Plots}
-	\include{Codes}
+	\include{FractalsAddon}
+	\include{CrossingAlgorithms}
 	
-	\bibliography{references}
 \end{document}
