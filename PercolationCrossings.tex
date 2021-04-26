@@ -118,7 +118,7 @@ All results can be found (in an interactive form) at \url{https://pauldubois98.g
 We discuss the method used to produce the following plots in the appendix, see \ref{finding_crossings}.
 
 \subparagraph{$D=2$}
-As $d$ increases, it seems like the phase transition\footnote{We call phase transition the interval $\{ p \mid \mathbb{P}(\text{exists crossings}) \in (0,1) \}$.} shrinks.
+As $d$ increases, it seems like the phase transition\footnote{We call phase transition the interval $\{ p \mid \mathbb{P}(\text{exists crossings}) \in (0,1) \} \subseteq \left[ 0,1 \right]$.} shrinks.
 One may conjecture that eventually, for a recursive percolation, the probability that there exists a crossing is either $0$ or $1$, and that there is a critical value $p_n$ that splits the two regimes.
 
 For semi-straight crossings, transition occurs for a higher value of $p$\footnotemark.
@@ -287,8 +287,8 @@ The following proof extends techniques from \cite[p.310 b.(2)]{Chayes_1988}.
 	This time, take $x = \left( \frac{j_2}{n^k},\dots,\frac{j_D}{n^k} \right) \text{ with } j_i \in \llbracket 1,n^k-1 \rrbracket$, $x_i = \nicefrac{j_i}{n^k}$.
 	Call a segment $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ vacant if any of the $2(D-1)$ cuboids adjacent at the depth $k$ of the percolation have been removed.
 	
-	Let $Y^k$, be the number of occupied segments of the form $\{ x \} \times \left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right]$ at depth $k$.
-	Then $Y^k$, is a branching process in which the mean number of offsprings is $p^{2(D-1)n}$.
+	Let $Y^k$, be the number of occupied segments of the form $\left[ \frac{j_1-1}{n^k},\frac{j_1}{n^k} \right] \times \{ x \}$ at depth $k$.
+	Then $Y^k$, is a branching process in which the mean number of offsprings is $p^{2(D-1)}n$.
 	This branching process is almost surely eventually empty if $np^{2(D-1)} \leq 1$, i.e. if $p \leq \frac{1}{\sqrt[2(D-1)]{n}}$.
 	
 	Suppose the branching process dies at depth $k$.

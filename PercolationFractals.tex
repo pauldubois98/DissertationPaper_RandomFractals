@@ -52,7 +52,7 @@ and $$P^0 = \left[ 0,1 \right]^2.$$
 We will adopt the notation $P^d \sim \text{Perc}(n,p,d)$ for such a setup (a recursive percolation of depth $d$, side $n$ and probability parameter $p$).
 
 In this case, it is interesting to study the behaviour as $d \to \infty$, with $n$ fixed.
-We will write $P \sim \text{Perc}(n,p)$ for $P = \bigcap_{k \to \infty} P^k$, with $P^k$ defined recursively as above.
+We will write $P \sim \text{Perc}(n,p,\infty)$ for $P = \bigcap_{k \to \infty} P^k$, with $P^k$ defined recursively as above.
 
 \begin{figure}[!h]
 	\centering
@@ -298,7 +298,7 @@ The following results were obtained from taking the average over 50000 percolati
 The approximation is therefore very accurate.
 This was possible thanks to Oxford Mathematical Institute's Computing Services.
 
-All plots from our simulations are available at \url{https://pauldubois98.github.io/PercolationFractalsStudy/blob.html}.
+All plots from our simulations are available online\footnote{See \url{https://pauldubois98.github.io/PercolationFractalsStudy/blob.html}.}.
 They are all of the following form: the probability parameter $p$ on the x-axis, the quantity we are looking at on the y-axis, and a line for each pair of parameters $(n,d)$, labelled with $n \hat{} d$.
 We considered the cases $D=2$ and $D=3$.
 For $D=2$, the interior is measured by an area, and the boundary by a length, while for $D=3$, the interior is a volume, and the boundary an area.
@@ -367,8 +367,8 @@ We then see a jump behaviour: for $0.6 \leq p <1$, the length of the boundary gr
 When $p$ is close to one, the percolation is connected.
 The blob and the percolation are nearly the same sets, and the removed cuboids can be assumed to be isolated.
 Then, the size of the boundary for $P \sim \text{Perc}^D(n,p,1)$ is (in expectation):
-$$\underbrace{(1-p)n^D}_{\text{Expected number of\\cuboids removed}} \underbrace{2D \left( \nicefrac{1}{n} \right)^{D-1}}_{\text{Boundary of a single\\cuboid of side } \nicefrac{1}{n}}
-+ \overbrace{2D}_{\text{Boundary of the\\unit cuboid}} = 2D (1 + (1-p)n) \to \infty \quad \text{ as } n \to \infty$$
+%$$\underbrace{(1-p)n^D}_{\substack{\text{Expected number}\\ \text{of cuboids removed}}} * \underbrace{2D \left( \nicefrac{1}{n} \right)^{D-1}}_{\substack{\text{Boundary of a single}\\ \text{cuboid of side } \nicefrac{1}{n}}} + \underbrace{2D}_{\substack{\text{Boundary of the}\\ \text{unit cuboid}}} = 2D (1 + (1-p)n) \to \infty \quad \text{ as } n \to \infty$$
+$$\underbrace{(1-p)n^D}_{\substack{\text{Expected number}\\ \text{of cuboids removed}}} \overbrace{2D \left( \nicefrac{1}{n} \right)^{D-1}}^{\substack{\text{Boundary of a single}\\ \text{cuboid of side } \nicefrac{1}{n}}} + \underbrace{2D}_{\substack{\text{Boundary of the}\\ \text{unit cuboid}}} = 2D (1 + (1-p)n) \to \infty \quad \text{ as } n \to \infty$$
 This behaviour is observed for $D=2$ in \ref{fig:blobBoundaryClassical}.
 
 For recursive percolation (see fig. \ref{fig:blobBoundaryRecursive}), we also observe two phases (boundary close to zero for small $p$, followed by a rapid increase when $p$ gets closer to one).
